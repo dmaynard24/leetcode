@@ -4,17 +4,21 @@
 // Given a string, find the length of the longest substring without repeating characters.
 
 // Example 1:
-
 // Input: "abcabcbb"
 // Output: 3
 // Explanation: The answer is "abc", with the length of 3.
-// Example 2:
 
+// Example 2:
 // Input: "bbbbb"
 // Output: 1
 // Explanation: The answer is "b", with the length of 1.
-// Example 3:
 
+// Example 3:
+// Input: "dvdf"
+// Output: 3
+// Explanation: The answer is "vdf", with the length of 3.
+
+// Example 4:
 // Input: "pwwkew"
 // Output: 3
 // Explanation: The answer is "wke", with the length of 3.
@@ -37,20 +41,20 @@ var lengthOfLongestSubstring = function(s) {
 
     let substrChars = [];
     substrChars[s[i]] = 1;
-
-    let j = i + 1;
-    while (j < s.length) {
-      let char = s[j];
-      if (substrChars[char]) {
+    for (let j = i + 1; j < s.length; j++) {
+      if (substrChars[s[j]]) {
+        let len = j - i;
+        longest = len > longest ? len : longest;
         break;
       }
 
-      substrChars[char] = 1;
-      j++;
-    }
+      if (j == s.length - 1) {
+        let len = j + 1 - i;
+        longest = len > longest ? len : longest;
+      }
 
-    length = j - i;
-    longest = Math.max(longest, length);
+      substrChars[s[j]] = 1;
+    }
   }
 
   return longest == 0 ? s.length : longest;
