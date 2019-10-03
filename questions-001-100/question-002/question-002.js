@@ -17,58 +17,41 @@
  * @return {ListNode}
  */
 var addTwoNumbers = function(l1, l2) {
-  let numOneArr = [];
-  while (l1.next) {
-    numOneArr.push(l1.val);
-    l1 = l1.next;
-  }
-  numOneArr.push(l1.val);
-  numOneArr.reverse();
-
-  let numTwoArr = [];
-  while (l2.next) {
-    numTwoArr.push(l2.val);
-    l2 = l2.next;
-  }
-  numTwoArr.push(l2.val);
-  numTwoArr.reverse();
-
-  if (numOneArr.length != numTwoArr.length) {
-    if (numOneArr.length > numTwoArr.length) {
-      while (numTwoArr.length < numOneArr.length) {
-        numTwoArr.unshift(0);
-      }
-    } else {
-      while (numOneArr.length < numTwoArr.length) {
-        numOneArr.unshift(0);
-      }
-    }
-  }
-
   let carry = 0,
-    sumDigits = [];
-  for (let i = numOneArr.length - 1; i >= 0; i--) {
-    let sum = numOneArr[i] + numTwoArr[i] + carry;
+    l1Val,
+    l2Val,
+    sum;
 
-    if (sum >= 10) {
-      sumDigits.push(sum % 10);
-      carry = Math.floor(sum / 10);
-    } else {
-      sumDigits.push(sum);
-      carry = 0;
-    }
+  setSum();
+
+  let returnNode = new ListNode(sum),
+    node = returnNode;
+
+  while (l1.next || l2.next) {
+    l1 = l1.next ? l1.next : 0;
+    l2 = l2.next ? l2.next : 0;
+
+    setSum();
+
+    node.next = new ListNode(sum);
+    node = node.next;
   }
 
   if (carry > 0) {
-    sumDigits.push(carry);
+    node.next = new ListNode(carry);
   }
 
-  let returnNode = new ListNode(sumDigits[0]),
-    prevNode = returnNode;
+  function setSum() {
+    l1Val = l1.val != undefined ? l1.val : 0;
+    l2Val = l2.val != undefined ? l2.val : 0;
+    sum = l1Val + l2Val + carry;
 
-  for (let i = 1; i < sumDigits.length; i++) {
-    prevNode.next = new ListNode(sumDigits[i]);
-    prevNode = prevNode.next;
+    if (sum >= 10) {
+      carry = Math.floor(sum / 10);
+      sum = sum % 10;
+    } else {
+      carry = 0;
+    }
   }
 
   return returnNode;
