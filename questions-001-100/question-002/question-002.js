@@ -18,33 +18,13 @@
  */
 var addTwoNumbers = function(l1, l2) {
   let carry = 0,
-    l1Val,
-    l2Val,
-    sum;
-
-  setSum();
-
-  let returnNode = new ListNode(sum),
+    returnNode = new ListNode(0),
     node = returnNode;
 
-  while (l1.next || l2.next) {
-    l1 = l1.next ? l1.next : 0;
-    l2 = l2.next ? l2.next : 0;
-
-    setSum();
-
-    node.next = new ListNode(sum);
-    node = node.next;
-  }
-
-  if (carry > 0) {
-    node.next = new ListNode(carry);
-  }
-
-  function setSum() {
-    l1Val = l1.val != undefined ? l1.val : 0;
-    l2Val = l2.val != undefined ? l2.val : 0;
-    sum = l1Val + l2Val + carry;
+  while (l1 != null || l2 != null) {
+    let l1Val = l1 != undefined ? l1.val : 0,
+      l2Val = l2 != undefined ? l2.val : 0,
+      sum = l1Val + l2Val + carry;
 
     if (sum >= 10) {
       carry = Math.floor(sum / 10);
@@ -52,9 +32,19 @@ var addTwoNumbers = function(l1, l2) {
     } else {
       carry = 0;
     }
+
+    node.next = new ListNode(sum);
+    node = node.next;
+
+    l1 = l1 && l1.next ? l1.next : null;
+    l2 = l2 && l2.next ? l2.next : null;
   }
 
-  return returnNode;
+  if (carry > 0) {
+    node.next = new ListNode(carry);
+  }
+
+  return returnNode.next;
 };
 
 function ListNode(val) {
