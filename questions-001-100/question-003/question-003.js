@@ -29,35 +29,23 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function(s) {
-  if (s.length == 1) {
-    return 1;
-  }
-
-  let longest = 0;
-  for (let i = 0; i < s.length; i++) {
+  let longest = 0,
+    charMap = new Map();
+  for (let i = 0, j = 0; j < s.length; j++) {
     if (s.length - i < longest) {
       break;
     }
 
-    let substrChars = [];
-    substrChars[s[i]] = 1;
-    for (let j = i + 1; j < s.length; j++) {
-      if (substrChars[s[j]]) {
-        let len = j - i;
-        longest = len > longest ? len : longest;
-        break;
-      }
-
-      if (j == s.length - 1) {
-        let len = j + 1 - i;
-        longest = len > longest ? len : longest;
-      }
-
-      substrChars[s[j]] = 1;
+    let cachedJ = charMap.get(s.charAt(j));
+    if (cachedJ) {
+      i = Math.max(cachedJ, i);
     }
+
+    longest = Math.max(longest, j - i + 1);
+    charMap.set(s.charAt(j), j + 1);
   }
 
-  return longest == 0 ? s.length : longest;
+  return longest;
 };
 
 module.exports = lengthOfLongestSubstring;
