@@ -60,8 +60,4 @@ var lengthOfLongestSubstring = function(s) {
   return longest == 0 ? s.length : longest;
 };
 
-const now = require('performance-now');
-const time0 = now();
-console.log(lengthOfLongestSubstring('bbbbb'));
-const time1 = now();
-console.log(`call took ${time1 - time0} milliseconds`);
+module.exports = lengthOfLongestSubstring;
