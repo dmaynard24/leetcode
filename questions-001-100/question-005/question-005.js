@@ -61,8 +61,4 @@ var longestPalindrome = function(s) {
   return longest;
 };
 
-const now = require('performance-now');
-const time0 = now();
-console.log(longestPalindrome('aaaa'));
-const time1 = now();
-console.log(`call took ${time1 - time0} milliseconds`);
+module.exports = longestPalindrome;
