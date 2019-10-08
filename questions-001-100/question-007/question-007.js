@@ -38,9 +38,9 @@ var reverse = function(x) {
 
   let num = isNegative ? reversed * -1 : reversed;
 
-  let MAX_32BIT_INT = Math.pow(2, 31) - 1,
-    MIN_32BIT_INT = MAX_32BIT_INT * -1;
-  return num > MAX_32BIT_INT || num < MIN_32BIT_INT ? 0 : num;
+  const MAX_SAFE_32BIT_INT = Math.pow(2, 31) - 1,
+    MIN_SAFE_32BIT_INT = MAX_SAFE_32BIT_INT * -1 - 1;
+  return num > MAX_SAFE_32BIT_INT || num < MIN_SAFE_32BIT_INT ? 0 : num;
 };
 
 module.exports = reverse;
