@@ -21,10 +21,10 @@ var maxArea = function(height) {
   for (let n = 0; n < height.length; n++) {
     for (let o = 0; o < height.length; o++) {
       let w = n + 1 - (o + 1),
-        h = height[n] < height[o] ? height[n] : height[o],
+        h = Math.min(height[n], height[o]),
         area = w * h;
 
-      largestArea = largestArea > area ? largestArea : area;
+      largestArea = Math.max(largestArea, area);
     }
   }
 
