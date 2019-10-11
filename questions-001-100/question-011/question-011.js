@@ -85,16 +85,19 @@ var maxArea = function(height) {
       };
     }
 
-    let tentativeAreaRight = height[n] * n;
-    if (tentativeAreaRight > rightVertical.tentativeArea) {
-      rightVertical = {
-        n: n,
-        height: height[n],
-        tentativeArea: tentativeAreaRight
-      };
+    if (n > leftVertical.n) {
+      let tentativeAreaRight = height[n] * n;
+      if (tentativeAreaRight >= rightVertical.tentativeArea) {
+        rightVertical = {
+          n: n,
+          height: height[n],
+          tentativeArea: tentativeAreaRight
+        };
+      }
     }
   }
 
+  console.log(leftVertical, rightVertical);
   let w = rightVertical.n + 1 - (leftVertical.n + 1),
     h = Math.min(leftVertical.height, rightVertical.height),
     area = w * h;
@@ -102,6 +105,6 @@ var maxArea = function(height) {
   return area;
 };
 
-console.log(maxArea([1, 2, 1]));
+console.log(maxArea([9, 6, 14, 11, 2, 2, 4, 9, 3, 8]));
 
 module.exports = maxArea;

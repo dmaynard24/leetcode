@@ -11,3 +11,7 @@ test('gets the maximum area of vertical lines represented by [1, 1] to be 1', ()
 test('gets the maximum area of vertical lines represented by [1, 2, 1] to be 2', () => {
   expect(maxArea([1, 2, 1])).toBe(2);
 });
+
+test('gets the maximum area of vertical lines represented by [9, 6, 14, 11, 2, 2, 4, 9, 3, 8] to be 72', () => {
+  expect(maxArea([9, 6, 14, 11, 2, 2, 4, 9, 3, 8])).toBe(72);
+});
