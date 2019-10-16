@@ -15,96 +15,28 @@
  * @param {number[]} height
  * @return {number}
  */
-// var maxArea = function(height) {
-//   let largestArea = 0,
-//     largestLeft = {
-//       height: 0,
-//       n: 0
-//     },
-//     largestRight = {
-//       height: 0,
-//       n: height.length - 1
-//     };
-
-//   for (let n = largestLeft.n; n <= largestRight.n; n++) {
-//     let leftHeight = height[n];
-//     if (leftHeight < largestLeft.height) {
-//       continue;
-//     }
-
-//     for (let o = largestRight.n; o >= 0; o--) {
-//       let rightHeight = height[o];
-//       if (rightHeight < largestRight.height) {
-//         continue;
-//       }
-
-//       let w = o + 1 - (n + 1),
-//         h = Math.min(leftHeight, rightHeight),
-//         area = w * h;
-
-//       if (area > largestArea) {
-//         largestArea = area;
-//         largestLeft = {
-//           height: leftHeight,
-//           n: n
-//         };
-//         largestRight = {
-//           height: rightHeight,
-//           n: o
-//         };
-//       }
-//     }
-//   }
-
-//   return largestArea;
-// };
-
-/**
- * @param {number[]} height
- * @return {number}
- */
 var maxArea = function(height) {
-  let leftVertical = {
-      n: 0,
-      height: 0,
-      tentativeArea: 0
-    },
-    rightVertical = {
-      n: 0,
-      height: 0,
-      tentativeArea: 0
-    };
+  let l = 0,
+    r = height.length - 1,
+    largestArea = 0;
 
-  for (let n = 0; n < height.length; n++) {
-    let tentativeAreaLeft = height[n] * (height.length - (n + 1));
-    if (tentativeAreaLeft > leftVertical.tentativeArea) {
-      leftVertical = {
-        n: n,
-        height: height[n],
-        tentativeArea: tentativeAreaLeft
-      };
-    }
+  while (l < r) {
+    let leftHeight = height[l],
+      rightHeight = height[r],
+      w = r + 1 - (l + 1),
+      h = Math.min(leftHeight, rightHeight),
+      area = w * h;
 
-    if (n > leftVertical.n) {
-      let tentativeAreaRight = height[n] * n;
-      if (tentativeAreaRight >= rightVertical.tentativeArea) {
-        rightVertical = {
-          n: n,
-          height: height[n],
-          tentativeArea: tentativeAreaRight
-        };
-      }
+    largestArea = Math.max(largestArea, area);
+
+    if (leftHeight < rightHeight) {
+      l++;
+    } else {
+      r--;
     }
   }
 
-  console.log(leftVertical, rightVertical);
-  let w = rightVertical.n + 1 - (leftVertical.n + 1),
-    h = Math.min(leftVertical.height, rightVertical.height),
-    area = w * h;
-
-  return area;
+  return largestArea;
 };
-
-console.log(maxArea([9, 6, 14, 11, 2, 2, 4, 9, 3, 8]));
 
 module.exports = maxArea;
