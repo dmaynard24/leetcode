@@ -65,22 +65,21 @@ var intToRoman = function(num) {
 
     if (num / symbolVal >= 1) {
       if (i > 0) {
-        let prevSymbolVal = symbolValues[symbols[i - 1]],
-          nextSymbolVal = symbolValues[symbols[i + 1]];
+        let prevSymbolVal = symbolValues[symbols[i - 1]];
 
         if (i < symbols.length - 1) {
-          if (i % 2 == 1 && num >= prevSymbolVal - nextSymbolVal) {
+          let nextSymbolVal = symbolValues[symbols[i + 1]];
+
+          if (prevSymbolVal == symbolVal * 2 && num >= prevSymbolVal - nextSymbolVal) {
             // 9
-            roman += symbols[i + 1];
-            roman += symbols[i - 1];
+            roman += symbols[i + 1] + symbols[i - 1];
             num -= nextSymbolVal * 9;
           }
         }
 
-        if (i % 2 == 0 && num >= prevSymbolVal - symbolVal) {
+        if (prevSymbolVal == symbolVal * 5 && num >= prevSymbolVal - symbolVal) {
           // 4
-          roman += symbol;
-          roman += symbols[i - 1];
+          roman += symbol + symbols[i - 1];
           num -= symbolVal * 4;
         }
       }
