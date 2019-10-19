@@ -65,11 +65,11 @@ var romanToInt = function(s) {
 
     if (symbolValues[nextSymbol] > symbolValues[currSymbol]) {
       returnInt += symbolValues[nextSymbol] - symbolValues[currSymbol];
-      i++;
-    } else {
-      returnInt += symbolValues[currSymbol];
+      i += 2;
+      continue;
     }
 
+    returnInt += symbolValues[currSymbol];
     i++;
   }
 
