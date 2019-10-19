@@ -58,23 +58,20 @@ var romanToInt = function(s) {
     },
     returnInt = 0;
 
-  let i = 0;
-  while (i < s.length - 1) {
+  for (let i = s.length - 1; i >= 0; i--) {
     let currSymbol = s[i],
-      nextSymbol = s[i + 1];
+      prevSymbol = s[i + 1];
 
-    if (symbolValues[nextSymbol] > symbolValues[currSymbol]) {
-      returnInt += symbolValues[nextSymbol] - symbolValues[currSymbol];
-      i += 2;
+    if (prevSymbol != undefined) {
+      if (symbolValues[prevSymbol] > symbolValues[currSymbol]) {
+        returnInt -= symbolValues[currSymbol];
+      } else {
+        returnInt += symbolValues[currSymbol];
+      }
       continue;
     }
 
     returnInt += symbolValues[currSymbol];
-    i++;
-  }
-
-  if (i < s.length) {
-    returnInt += symbolValues[s[i]];
   }
 
   return returnInt;
