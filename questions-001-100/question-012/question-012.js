@@ -48,7 +48,7 @@
  * @return {string}
  */
 var intToRoman = function(num) {
-  let symbolValues = {
+  let symbolVals = {
       M: 1000,
       D: 500,
       C: 100,
@@ -57,18 +57,18 @@ var intToRoman = function(num) {
       V: 5,
       I: 1
     },
-    symbols = Object.keys(symbolValues),
+    symbols = Object.keys(symbolVals),
     roman = '';
 
   symbols.forEach((symbol, i) => {
-    let symbolVal = symbolValues[symbol];
+    let symbolVal = symbolVals[symbol];
 
     if (num / symbolVal >= 1) {
       if (i > 0) {
-        let prevSymbolVal = symbolValues[symbols[i - 1]];
+        let prevSymbolVal = symbolVals[symbols[i - 1]];
 
         if (i < symbols.length - 1) {
-          let nextSymbolVal = symbolValues[symbols[i + 1]];
+          let nextSymbolVal = symbolVals[symbols[i + 1]];
 
           if (prevSymbolVal == symbolVal * 2 && num >= prevSymbolVal - nextSymbolVal) {
             // 9

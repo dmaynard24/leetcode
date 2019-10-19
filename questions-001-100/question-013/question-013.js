@@ -47,7 +47,7 @@
  * @return {number}
  */
 var romanToInt = function(s) {
-  let symbolValues = {
+  let symbolVals = {
       M: 1000,
       D: 500,
       C: 100,
@@ -56,16 +56,16 @@ var romanToInt = function(s) {
       V: 5,
       I: 1
     },
-    returnInt = symbolValues[s[s.length - 1]];
+    returnInt = symbolVals[s[s.length - 1]];
 
   for (let i = s.length - 2; i >= 0; i--) {
-    let currSymbol = s[i],
-      prevSymbol = s[i + 1];
+    let currSymbolVal = symbolVals[s[i]],
+      prevSymbolVal = symbolVals[s[i + 1]];
 
-    if (symbolValues[prevSymbol] > symbolValues[currSymbol]) {
-      returnInt -= symbolValues[currSymbol];
+    if (prevSymbolVal > currSymbolVal) {
+      returnInt -= currSymbolVal;
     } else {
-      returnInt += symbolValues[currSymbol];
+      returnInt += currSymbolVal;
     }
   }
 
