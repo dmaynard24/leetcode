@@ -50,24 +50,27 @@ var threeSum = function(nums) {
       cachedFirstTerms.set(firstTerm, 1);
     }
 
-    for (let j = i + 1; j < nums.length + i; j++) {
-      let secondTerm = nums[j % nums.length];
+    for (let j = i + 1; j < nums.length; j++) {
+      let secondTerm = nums[j];
 
       let thirdTerm = (firstTerm + secondTerm) * -1,
         cachedIndices = cachedTermsIndices.get(thirdTerm);
       if (cachedIndices == undefined) {
         continue;
-      } else {
-        for (let k = 0; k < cachedIndices.length; k++) {
-          // ensure it hasn't been used by the first or second term
-          if (cachedIndices[k] != i && cachedIndices[k] != j % nums.length) {
-            let sortedSet = [firstTerm, secondTerm, thirdTerm].sort((a, b) => a - b),
-              cachedSetKey = sortedSet.join('');
-            if (cachedSets.get(cachedSetKey) == undefined) {
-              solutionSet.push(sortedSet);
-              cachedSets.set(cachedSetKey, 1);
-            }
+      }
+
+      for (let k = 0; k < cachedIndices.length; k++) {
+        // ensure it hasn't been used by the first or second term
+        if (cachedIndices[k] != i && cachedIndices[k] != j) {
+          let sortedSet = [firstTerm, secondTerm, thirdTerm].sort((a, b) => a - b),
+            cachedSetKey = sortedSet.join('');
+          if (cachedSets.get(cachedSetKey) == 1) {
+            continue;
           }
+
+          solutionSet.push(sortedSet);
+          cachedSets.set(cachedSetKey, 1);
+          break;
         }
       }
     }
