@@ -22,22 +22,26 @@
  * @return {number[][]}
  */
 var threeSum = function(nums) {
+  if (nums.length < 3) {
+    return [];
+  }
+
   let solutionSet = [],
-    cachedTermsIndices = new Map(),
+    termCounts = new Map(),
     cachedFirstTerms = new Map(),
     cachedSets = new Map();
 
   // start by caching terms, removing any term that's used more than thrice
   for (let i = 0; i < nums.length; i++) {
-    if (cachedTermsIndices.get(nums[i]) == undefined) {
-      cachedTermsIndices.set(nums[i], [i]);
+    if (termCounts.get(nums[i]) == undefined) {
+      termCounts.set(nums[i], 1);
     } else {
-      let cachedIndices = cachedTermsIndices.get(nums[i]);
-      if (cachedIndices.length == 3) {
+      let cachedCount = termCounts.get(nums[i]);
+      if (cachedCount == 3) {
         nums.splice(i, 1);
         i--;
       } else {
-        cachedTermsIndices.set(nums[i], cachedIndices.concat(i));
+        termCounts.set(nums[i], cachedCount + 1);
       }
     }
   }
@@ -54,29 +58,35 @@ var threeSum = function(nums) {
       let secondTerm = nums[j];
 
       let thirdTerm = (firstTerm + secondTerm) * -1,
-        cachedIndices = cachedTermsIndices.get(thirdTerm);
-      if (cachedIndices == undefined) {
+        cachedCount = termCounts.get(thirdTerm);
+      if (cachedCount == undefined) {
         continue;
       }
 
-      for (let k = 0; k < cachedIndices.length; k++) {
-        // ensure it hasn't been used by the first or second term
-        if (cachedIndices[k] != i && cachedIndices[k] != j) {
-          let sortedSet = [firstTerm, secondTerm, thirdTerm].sort((a, b) => a - b),
-            cachedSetKey = sortedSet.join('');
-          if (cachedSets.get(cachedSetKey) == 1) {
-            continue;
-          }
+      let minCount = 0;
+      if (thirdTerm == firstTerm) {
+        minCount++;
+      }
+      if (thirdTerm == secondTerm) {
+        minCount++;
+      }
 
-          solutionSet.push(sortedSet);
-          cachedSets.set(cachedSetKey, 1);
-          break;
+      if (cachedCount > minCount) {
+        let sortedSet = [firstTerm, secondTerm, thirdTerm].sort((a, b) => a - b),
+          cachedSetKey = sortedSet.join('');
+        if (cachedSets.get(cachedSetKey) == 1) {
+          continue;
         }
+
+        solutionSet.push(sortedSet);
+        cachedSets.set(cachedSetKey, 1);
       }
     }
   }
 
   return solutionSet;
 };
+
+// console.log(threeSum([-1, 0, 1, 2, -1, -4]));
 
 module.exports = threeSum;
