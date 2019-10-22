@@ -26,60 +26,43 @@ var threeSum = function(nums) {
     return [];
   }
 
-  let solutionSet = [],
-    termCounts = new Map(),
-    cachedFirstTerms = new Map(),
-    cachedSets = new Map();
+  // must sort
+  nums.sort((a, b) => a - b);
 
-  // start by caching terms, removing any term that's used more than thrice
+  let solutionSet = [],
+    cachedTermIndices = new Map();
+
+  // start by caching terms indices
   for (let i = 0; i < nums.length; i++) {
-    if (termCounts.get(nums[i]) == undefined) {
-      termCounts.set(nums[i], 1);
+    if (cachedTermIndices.get(nums[i]) == undefined) {
+      cachedTermIndices.set(nums[i], [i]);
     } else {
-      let cachedCount = termCounts.get(nums[i]);
-      if (cachedCount == 3) {
-        nums.splice(i, 1);
-        i--;
-      } else {
-        termCounts.set(nums[i], cachedCount + 1);
-      }
+      cachedTermIndices.get(nums[i]).push(i);
     }
   }
 
   for (let i = 0; i < nums.length; i++) {
-    let firstTerm = nums[i];
-    if (cachedFirstTerms.get(firstTerm) == 1) {
+    if (nums[i] == nums[i - 1]) {
       continue;
-    } else {
-      cachedFirstTerms.set(firstTerm, 1);
     }
+    let firstTerm = nums[i];
 
     for (let j = i + 1; j < nums.length; j++) {
-      let secondTerm = nums[j];
-
-      let thirdTerm = (firstTerm + secondTerm) * -1,
-        cachedCount = termCounts.get(thirdTerm);
-      if (cachedCount == undefined) {
+      let secondTerm = nums[j],
+        thirdTerm = (firstTerm + secondTerm) * -1,
+        thirdTermIndices = cachedTermIndices.get(thirdTerm);
+      if (thirdTermIndices == undefined) {
         continue;
       }
 
-      let minCount = 0;
-      if (thirdTerm == firstTerm) {
-        minCount++;
-      }
-      if (thirdTerm == secondTerm) {
-        minCount++;
-      }
-
-      if (cachedCount > minCount) {
-        let sortedSet = [firstTerm, secondTerm, thirdTerm].sort((a, b) => a - b),
-          cachedSetKey = sortedSet.join('');
-        if (cachedSets.get(cachedSetKey) == 1) {
-          continue;
+      for (let k = 0; k < thirdTermIndices.length; k++) {
+        if (thirdTermIndices[k] > j) {
+          let prevSet = solutionSet[solutionSet.length - 1];
+          if (prevSet == undefined || prevSet[0] != firstTerm || prevSet[1] != secondTerm || prevSet[2] != thirdTerm) {
+            solutionSet.push([firstTerm, secondTerm, thirdTerm]);
+          }
+          break;
         }
-
-        solutionSet.push(sortedSet);
-        cachedSets.set(cachedSetKey, 1);
       }
     }
   }
