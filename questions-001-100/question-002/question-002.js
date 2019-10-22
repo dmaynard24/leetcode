@@ -47,6 +47,13 @@ var addTwoNumbers = function(l1, l2) {
   return returnNode.next;
 };
 
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
 function ListNode(val) {
   this.val = val;
   this.next = null;
