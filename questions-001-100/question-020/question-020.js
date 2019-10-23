@@ -29,8 +29,6 @@
 // Input: "{[]}"
 // Output: true
 
-const palindrome = require('../../util/palindrome');
-
 /**
  * @param {string} s
  * @return {boolean}
