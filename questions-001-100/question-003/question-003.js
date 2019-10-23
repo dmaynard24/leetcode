@@ -30,19 +30,22 @@
  */
 var lengthOfLongestSubstring = function(s) {
   let longest = 0,
-    charMap = new Map();
-  for (let i = 0, j = 0; j < s.length; j++) {
+    charIndices = new Map();
+
+  let i = 0;
+  for (let j = 0; j < s.length; j++) {
     if (s.length - i < longest) {
       break;
     }
 
-    let cachedJ = charMap.get(s.charAt(j));
-    if (cachedJ) {
-      i = Math.max(cachedJ, i);
+    let char = s[j],
+      cachedCharIndex = charIndices.get(char);
+    if (cachedCharIndex) {
+      i = Math.max(cachedCharIndex, i);
     }
 
     longest = Math.max(longest, j - i + 1);
-    charMap.set(s.charAt(j), j + 1);
+    charIndices.set(char, j + 1);
   }
 
   return longest;
