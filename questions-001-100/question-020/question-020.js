@@ -44,33 +44,30 @@ var isValid = function(s) {
     return false;
   }
 
-  let openSet = [];
+  let closeMap = {
+    ')': '(',
+    ']': '[',
+    '}': '{'
+  };
 
+  if (closeMap[s[0]] != undefined) {
+    return false;
+  }
+
+  let openStack = [];
   for (let i = 0; i < s.length; i++) {
     let char = s[i];
-    switch (char) {
-      case ')':
-        if (openSet.pop() != '(') {
-          return false;
-        }
-        break;
-      case ']':
-        if (openSet.pop() != '[') {
-          return false;
-        }
-        break;
-      case '}':
-        if (openSet.pop() != '{') {
-          return false;
-        }
-        break;
-      default:
-        openSet.push(char);
-        break;
+
+    if (closeMap[char]) {
+      if (openStack.pop() != closeMap[char]) {
+        return false;
+      }
+    } else {
+      openStack.push(char);
     }
   }
 
-  return openSet.length == 0;
+  return openStack.length == 0;
 };
 
 module.exports = isValid;
