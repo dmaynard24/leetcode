@@ -6,7 +6,7 @@
 // For example, given n = 3, a solution set is:
 
 // [
-//   "((()))",
+//   "(((())))",
 //   "(()())",
 //   "(())()",
 //   "()(())",
@@ -24,36 +24,55 @@ var generateParenthesis = function(n) {
 
   let validCombos = [];
 
-  let firstStr = '';
+  let lastValidCombo = '';
   for (let i = 0; i < n; i++) {
-    firstStr = '(' + firstStr;
-    firstStr += ')';
-  }
-  validCombos.push(firstStr);
-
-  startStr = firstStr.slice(0, n - 1) + ')(' + firstStr.slice(n + 1);
-  validCombos.push(startStr);
-
-  let nextStr = startStr,
-    prevStr = startStr;
-  for (let offset = 1; offset < n - 1; offset++) {
-    nextStr = nextStr.slice(0, n - 1 + offset) + ')(' + nextStr.slice(n + 1 + offset);
-    prevStr = prevStr.slice(0, n - 1 - offset) + ')(' + prevStr.slice(n + 1 - offset);
-    validCombos.push(nextStr);
-    validCombos.push(prevStr);
+    lastValidCombo += '()';
   }
 
-  if (n % 2 == 1) {
-    let endStr = '';
-    for (let i = 0; i < n; i++) {
-      endStr += '()';
+  let arrLength = n * 2 - 2,
+    pick = arrLength / 2;
+  let openIndices = getCombos([...Array(arrLength).keys()], pick);
+
+  for (let i = 0; i < openIndices.length; i++) {
+    let validCombo = '(';
+
+    let validComboArr = Array(arrLength).fill(')');
+    openIndices[i].forEach(openIndex => {
+      validComboArr.splice(openIndex, 1, '(');
+    });
+    validCombo += validComboArr.join('');
+
+    validCombo += ')';
+    console.log(validCombo, openIndices[i]);
+    validCombos.push(validCombo);
+
+    if (validCombo == lastValidCombo) {
+      break;
     }
-    validCombos.push(endStr);
   }
 
+  // validCombos.forEach(combo => console.log(combo));
   return validCombos;
 };
 
-console.log(generateParenthesis(4));
+function getCombos(arr, pick) {
+  if (!pick) {
+    return [[]];
+  }
+  if (!arr.length) {
+    return [];
+  }
+
+  let first = arr[0],
+    rest = arr.slice(1);
+
+  return getCombos(rest, pick - 1)
+    .map(combo => {
+      return [first].concat(combo);
+    })
+    .concat(getCombos(rest, pick));
+}
+
+console.log(generateParenthesis(3));
 
 module.exports = generateParenthesis;
