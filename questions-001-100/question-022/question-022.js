@@ -6,7 +6,7 @@
 // For example, given n = 3, a solution set is:
 
 // [
-//   "((()))",
+//   "(((())))",
 //   "(()())",
 //   "(())()",
 //   "()(())",
@@ -24,10 +24,6 @@
  * @return {string[]}
  */
 var generateParenthesis = function(n) {
-  if (n == 1) {
-    return ['()'];
-  }
-
   let validCombos = [];
 
   let lastValidCombo = '';
@@ -36,7 +32,6 @@ var generateParenthesis = function(n) {
   }
 
   let openIndices = [...Array(n).keys()],
-    indexToChange = 2,
     offset = 1,
     validCombo = '';
   while (validCombo != lastValidCombo) {
@@ -47,26 +42,32 @@ var generateParenthesis = function(n) {
     validCombo = validComboArr.join('');
     validCombos.push(validCombo);
 
-    // remove the indexToChange variable, just loop down
-    let openIndexVal = openIndices[indexToChange];
-    if (openIndexVal < indexToChange + n - 1) {
-      openIndices.splice(indexToChange, 1, openIndexVal + 1);
-    } else {
-      openIndices = [0].concat(
-        [...Array(n).keys()].slice(1).map(val => {
-          return val + offset;
-        })
-      );
-      offset++;
+    if (validCombo == lastValidCombo) {
+      break;
     }
 
-    console.log(openIndices);
-    validCombo = '()()()';
+    for (let i = openIndices.length - 1; i > 0; i--) {
+      let openIndexVal = openIndices[i];
+      if (openIndexVal < i * 2) {
+        openIndices.splice(i, 1, openIndexVal + 1);
+        break;
+      } else if (openIndexVal == i * 2) {
+        // close but still need to refactor 'reset' logic. (don't increase all values starting from index 1)
+        openIndices = [0].concat(
+          [...Array(n).keys()].slice(1).map((val, index) => {
+            val = Math.min(val + offset, (index + 1) * 2);
+            return val;
+          })
+        );
+        offset++;
+        break;
+      }
+    }
   }
 
   return validCombos;
 };
 
-console.log(generateParenthesis(3));
+console.log(generateParenthesis(4));
 
 module.exports = generateParenthesis;
