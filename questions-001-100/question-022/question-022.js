@@ -61,8 +61,6 @@ var generateParenthesis = function(n) {
     });
     return a.concat(validComboArr.join(''));
   }, []);
-
-  return validCombos;
 };
 
 module.exports = generateParenthesis;
