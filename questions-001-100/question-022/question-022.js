@@ -24,50 +24,45 @@
  * @return {string[]}
  */
 var generateParenthesis = function(n) {
-  let validCombos = [];
-
-  let lastValidCombo = '';
-  for (let i = 0; i < n; i++) {
-    lastValidCombo += '()';
+  if (n == 1) {
+    return ['()'];
   }
 
-  let openIndices = [...Array(n).keys()],
-    offset = 1,
-    validCombo = '';
-  while (validCombo != lastValidCombo) {
+  function getFilteredCombos(arr, pick) {
+    if (!pick) {
+      return [[]];
+    }
+    if (!arr.length) {
+      return [];
+    }
+
+    let first = arr[0],
+      rest = arr.slice(1);
+
+    // filter based on well-formed parens rule
+    if (first > (n - pick) * 2) {
+      return [];
+    }
+
+    return getFilteredCombos(rest, pick - 1)
+      .map(combo => {
+        return [first].concat(combo);
+      })
+      .concat(getFilteredCombos(rest, pick));
+  }
+
+  let indices = [...Array(n * 2 - 1).keys()],
+    openIndicesCombos = getFilteredCombos(indices, n, n);
+
+  return openIndicesCombos.reduce((a, c) => {
     let validComboArr = Array(n * 2).fill(')');
-    openIndices.forEach(index => {
-      validComboArr.splice(index, 1, '(');
+    c.forEach(i => {
+      validComboArr.splice(i, 1, '(');
     });
-    validCombo = validComboArr.join('');
-    validCombos.push(validCombo);
-
-    if (validCombo == lastValidCombo) {
-      break;
-    }
-
-    for (let i = openIndices.length - 1; i > 0; i--) {
-      let openIndexVal = openIndices[i];
-      if (openIndexVal < i * 2) {
-        openIndices.splice(i, 1, openIndexVal + 1);
-        break;
-      } else if (openIndexVal == i * 2) {
-        // close but still need to refactor 'reset' logic. (don't increase all values starting from index 1)
-        openIndices = [0].concat(
-          [...Array(n).keys()].slice(1).map((val, index) => {
-            val = Math.min(val + offset, (index + 1) * 2);
-            return val;
-          })
-        );
-        offset++;
-        break;
-      }
-    }
-  }
+    return a.concat(validComboArr.join(''));
+  }, []);
 
   return validCombos;
 };
-
-console.log(generateParenthesis(4));
 
 module.exports = generateParenthesis;
