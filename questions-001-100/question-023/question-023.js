@@ -32,8 +32,9 @@ var mergeKLists = function(lists) {
       }
     }
 
-    node.next = new ListNode(nonNulls[smallestListIndex].val);
-    nonNulls[smallestListIndex] = advanceList(nonNulls[smallestListIndex]);
+    let smallestList = nonNulls[smallestListIndex];
+    node.next = new ListNode(smallestList.val);
+    nonNulls[smallestListIndex] = advanceList(smallestList);
     node = node.next;
 
     if (nonNulls[smallestListIndex] == null) {
