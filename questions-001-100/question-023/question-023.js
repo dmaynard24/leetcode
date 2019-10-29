@@ -12,48 +12,30 @@
 // ]
 // Output: 1->1->2->3->4->4->5->6
 
+const mergeTwoLists = require('../question-021/question-021').mergeTwoLists;
+
 /**
  * @param {ListNode[]} lists
  * @return {ListNode}
  */
 var mergeKLists = function(lists) {
-  let returnNode = new ListNode(0),
-    node = returnNode;
+  if (lists.length == 0) {
+    return ''; // this is dumb, but leetcode won't pass without it
+  }
 
-  let nonNulls = lists.filter(list => list != null);
-  while (nonNulls.length > 1) {
-    let smallestListVal = Infinity,
-      smallestListIndex;
-
-    for (let i = 0; i < nonNulls.length; i++) {
-      if (nonNulls[i].val < smallestListVal) {
-        smallestListVal = nonNulls[i].val;
-        smallestListIndex = i;
+  while (lists.length > 1) {
+    let sortedPairs = [];
+    for (let i = 0; i < lists.length; i += 2) {
+      if (lists[i + 1] !== undefined) {
+        sortedPairs.push(mergeTwoLists(lists[i], lists[i + 1]));
+      } else {
+        sortedPairs.push(lists[i]);
       }
     }
-
-    let smallestList = nonNulls[smallestListIndex];
-    node.next = new ListNode(smallestList.val);
-    nonNulls[smallestListIndex] = advanceList(smallestList);
-    node = node.next;
-
-    if (nonNulls[smallestListIndex] == null) {
-      nonNulls.splice(smallestListIndex, 1);
-    }
+    lists = sortedPairs;
   }
 
-  let lastList = nonNulls[0];
-  while (lastList != null) {
-    node.next = new ListNode(lastList.val);
-    lastList = advanceList(lastList);
-    node = node.next;
-  }
-
-  return returnNode.next;
-};
-
-var advanceList = function(list) {
-  return list && list.next ? list.next : null;
+  return lists[0];
 };
 
 /**
