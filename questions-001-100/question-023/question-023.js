@@ -20,14 +20,13 @@ const mergeTwoLists = require('../question-021/question-021').mergeTwoLists;
  */
 var mergeKLists = function(lists) {
   if (lists.length == 0) {
-    return ''; // this is dumb, but leetcode won't pass without it
+    return null; // this is dumb, but leetcode won't pass without it
   }
 
   while (lists.length > 1) {
-    for (let i = 0; i < lists.length; i += 2) {
-      if (lists[i + 1] !== undefined) {
-        lists.splice(i, 2, mergeTwoLists(lists[i], lists[i + 1]));
-      }
+    let offset = lists.length % 2 == 0 ? 1 : 2;
+    for (let i = 0; i < lists.length - offset; i += 2) {
+      lists.splice(i, 2, mergeTwoLists(lists[i], lists[i + 1]));
     }
   }
 
