@@ -22,7 +22,7 @@ var twoSum = function(nums, target) {
 
   for (let i = 0; i < nums.length; i++) {
     let remaining = cachedNums.get(target - nums[i]);
-    if (remaining != undefined) {
+    if (remaining !== undefined) {
       return [remaining, i];
     }
 

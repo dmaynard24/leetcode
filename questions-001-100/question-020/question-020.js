@@ -48,7 +48,7 @@ var isValid = function(s) {
     '}': '{'
   };
 
-  if (closeMap[s[0]] != undefined) {
+  if (closeMap[s[0]] !== undefined) {
     return false;
   }
 
