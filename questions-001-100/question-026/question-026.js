@@ -18,15 +18,15 @@
  * @return {number}
  */
 var removeDuplicates = function(nums) {
-  for (let i = 0; i < nums.length; i++) {
-    let j = i + 1;
-    while (nums[j] == nums[i]) {
-      j++;
-    }
-    if (j - i > 1) {
-      nums.splice(i, j - i - 1);
+  let i = 0;
+  for (let j = 1; j < nums.length; j++) {
+    if (nums[j] != nums[i]) {
+      i++;
+      nums[i] = nums[j];
     }
   }
+
+  nums.splice(i + 1);
 
   return nums.length;
 };
