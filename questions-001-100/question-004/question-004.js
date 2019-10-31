@@ -24,16 +24,17 @@
  * @param {number[]} nums2
  * @return {number}
  */
-// var findMedianSortedArrays = function(nums1, nums2) {
-//   // attempt to concat in order based on the first term of each array
-//   let both = nums1.concat(nums2).sort((a, b) => a - b),
-//     len = both.length;
-//   return len % 2 == 1 ? both[Math.floor(len / 2)] : (both[len / 2 - 1] + both[len / 2]) / 2;
-// };
-
 var findMedianSortedArrays = function(nums1, nums2) {
+  if (nums1.length < 1) {
+    return findMedianSingleSortedArray(nums2);
+  }
+
+  if (nums2.length < 1) {
+    return findMedianSingleSortedArray(nums1);
+  }
+
   if (nums1.length > nums2.length) {
-    findMedianSortedArrays(nums2, nums1);
+    return findMedianSortedArrays(nums2, nums1);
   }
 
   let xLength = nums1.length,
@@ -42,7 +43,7 @@ var findMedianSortedArrays = function(nums1, nums2) {
     high = xLength;
   while (low <= high) {
     let partitionX = Math.floor((low + high) / 2),
-      partitionY = (xLength + yLength + 1) / 2 - partitionX,
+      partitionY = Math.floor((xLength + yLength + 1) / 2) - partitionX,
       lowX = nums1[partitionX - 1] ? nums1[partitionX - 1] : Number.MIN_SAFE_INTEGER,
       highX = nums1[partitionX] ? nums1[partitionX] : Number.MAX_SAFE_INTEGER,
       lowY = nums2[partitionY - 1] ? nums2[partitionY - 1] : Number.MIN_SAFE_INTEGER,
@@ -50,7 +51,6 @@ var findMedianSortedArrays = function(nums1, nums2) {
 
     if (lowX <= highY && lowY <= highX) {
       if ((xLength + yLength) % 2 == 0) {
-        // console.log('HERE!', lowX, lowY, highX, highY);
         return (Math.max(lowX, lowY) + Math.min(highX, highY)) / 2;
       } else {
         return Math.max(lowX, lowY);
@@ -61,6 +61,11 @@ var findMedianSortedArrays = function(nums1, nums2) {
       low = partitionX + 1;
     }
   }
+};
+
+var findMedianSingleSortedArray = function(nums) {
+  let len = nums.length;
+  return len % 2 == 1 ? nums[Math.floor(len / 2)] : (nums[len / 2 - 1] + nums[len / 2]) / 2;
 };
 
 module.exports = findMedianSortedArrays;
