@@ -41,4 +41,7 @@ var divide = function(dividend, divisor) {
   return quotient;
 };
 
+const MAX_SAFE_32BIT_INT = Math.pow(2, 31) - 1,
+  MIN_SAFE_32BIT_INT = MAX_SAFE_32BIT_INT * -1 - 1;
+
 module.exports = divide;
