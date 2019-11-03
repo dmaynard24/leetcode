@@ -14,17 +14,45 @@
 // For k = 3, you should return: 3->2->1->4->5
 
 /**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
-/**
  * @param {ListNode} head
  * @param {number} k
  * @return {ListNode}
  */
-var reverseKGroup = function(head, k) {};
+var reverseKGroup = function(head, k) {
+  let returnNode = new ListNode(0),
+    node = returnNode;
 
-module.exports = reverseKGroup;
+  while (head != null) {
+    let dummyHead = head,
+      nextVals = [dummyHead.val],
+      hasNext = true;
+    for (let i = 0; i < k - 1; i++) {
+      let nextVal = dummyHead.next;
+      if (nextVal == null) {
+        hasNext = false;
+        break;
+      }
+      nextVals.push(dummyHead.next.val);
+      dummyHead = dummyHead.next;
+    }
+
+    if (hasNext) {
+      while (nextVals.length > 0) {
+        node.next = new ListNode(nextVals.pop());
+        node = node.next;
+      }
+
+      head = dummyHead.next;
+    } else {
+      while (head != null) {
+        node.next = new ListNode(head.val);
+        node = node.next;
+        head = head.next;
+      }
+    }
+  }
+
+  return returnNode.next;
+};
+
+module.exports = { ListNode, reverseKGroup };
