@@ -24,8 +24,8 @@ var addTwoNumbers = function(l1, l2) {
     node = returnNode;
 
   while (l1 != null || l2 != null) {
-    let l1Val = l1 !== undefined ? l1.val : 0,
-      l2Val = l2 !== undefined ? l2.val : 0,
+    let l1Val = l1 != null ? l1.val : 0,
+      l2Val = l2 != null ? l2.val : 0,
       sum = l1Val + l2Val + carry;
 
     if (sum >= 10) {
