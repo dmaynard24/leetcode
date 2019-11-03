@@ -13,6 +13,8 @@
 
 // For k = 3, you should return: 3->2->1->4->5
 
+const ListNode = require('../../util/ListNode');
+
 /**
  * @param {ListNode} head
  * @param {number} k
@@ -41,7 +43,6 @@ var reverseKGroup = function(head, k) {
         node.next = new ListNode(nextVals.pop());
         node = node.next;
       }
-
       head = dummyHead.next;
     } else {
       while (head != null) {
@@ -55,4 +56,4 @@ var reverseKGroup = function(head, k) {
   return returnNode.next;
 };
 
-module.exports = { ListNode, reverseKGroup };
+module.exports = reverseKGroup;

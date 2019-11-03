@@ -7,6 +7,8 @@
 // Input: 1->2->4, 1->3->4
 // Output: 1->1->2->3->4->4
 
+const ListNode = require('../../util/ListNode');
+
 /**
  * @param {ListNode} l1
  * @param {ListNode} l2
@@ -25,16 +27,4 @@ var mergeTwoLists = function(l1, l2) {
   }
 };
 
-/**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
-function ListNode(val) {
-  this.val = val;
-  this.next = null;
-}
-
-module.exports = { ListNode, mergeTwoLists };
+module.exports = mergeTwoLists;

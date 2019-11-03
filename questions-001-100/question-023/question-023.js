@@ -12,7 +12,8 @@
 // ]
 // Output: 1->1->2->3->4->4->5->6
 
-const mergeTwoLists = require('../question-021/question-021').mergeTwoLists;
+const mergeTwoLists = require('../question-021/question-021'),
+  ListNode = require('../../util/ListNode');
 
 /**
  * @param {ListNode[]} lists
@@ -33,16 +34,4 @@ var mergeKLists = function(lists) {
   return lists[0];
 };
 
-/**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
-function ListNode(val) {
-  this.val = val;
-  this.next = null;
-}
-
-module.exports = { ListNode, mergeKLists };
+module.exports = mergeKLists;

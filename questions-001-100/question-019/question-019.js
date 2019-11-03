@@ -12,6 +12,8 @@
 
 // Given n will always be valid.
 
+const ListNode = require('../../util/ListNode');
+
 /**
  * @param {ListNode} head
  * @param {number} n
@@ -38,16 +40,4 @@ var removeNthFromEnd = function(head, n) {
   return returnNode.next;
 };
 
-/**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
-function ListNode(val) {
-  this.val = val;
-  this.next = null;
-}
-
-module.exports = { ListNode, removeNthFromEnd };
+module.exports = removeNthFromEnd;

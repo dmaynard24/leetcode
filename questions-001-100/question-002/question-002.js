@@ -11,6 +11,8 @@
 // Output: 7 -> 0 -> 8
 // Explanation: 342 + 465 = 807.
 
+const ListNode = require('../../util/ListNode');
+
 /**
  * @param {ListNode} l1
  * @param {ListNode} l2
@@ -47,16 +49,4 @@ var addTwoNumbers = function(l1, l2) {
   return returnNode.next;
 };
 
-/**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
-function ListNode(val) {
-  this.val = val;
-  this.next = null;
-}
-
-module.exports = { ListNode, addTwoNumbers };
+module.exports = addTwoNumbers;
