@@ -26,19 +26,17 @@ var reverseKGroup = function(head, k) {
 
   while (head != null) {
     let dummyHead = head,
-      nextVals = [dummyHead.val],
-      hasNext = true;
+      nextVals = [dummyHead.val];
     for (let i = 0; i < k - 1; i++) {
       let nextVal = dummyHead.next;
       if (nextVal == null) {
-        hasNext = false;
         break;
       }
       nextVals.push(dummyHead.next.val);
       dummyHead = dummyHead.next;
     }
 
-    if (hasNext) {
+    if (nextVals.length == k) {
       for (let i = k - 1; i >= 0; i--) {
         node.next = new ListNode(nextVals[i]);
         node = node.next;
