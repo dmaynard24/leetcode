@@ -39,18 +39,15 @@ var reverseKGroup = function(head, k) {
     }
 
     if (hasNext) {
-      while (nextVals.length > 0) {
-        node.next = new ListNode(nextVals.pop());
+      for (let i = k - 1; i >= 0; i--) {
+        node.next = new ListNode(nextVals[i]);
         node = node.next;
       }
-      head = dummyHead.next;
     } else {
-      while (head != null) {
-        node.next = new ListNode(head.val);
-        node = node.next;
-        head = head.next;
-      }
+      node.next = head;
     }
+
+    head = dummyHead.next;
   }
 
   return returnNode.next;
