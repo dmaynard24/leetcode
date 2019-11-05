@@ -34,7 +34,7 @@ var letterCombinations = function(digits) {
 
   let digitsArr = digits.split('');
 
-  function getCombos(index, combo) {
+  let getCombos = function(index, combo) {
     let combos = [];
 
     if (index == digitsArr.length) {
@@ -49,7 +49,7 @@ var letterCombinations = function(digits) {
     }
 
     return combos;
-  }
+  };
 
   return getCombos(0, '');
 };

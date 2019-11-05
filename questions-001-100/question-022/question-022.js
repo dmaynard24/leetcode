@@ -22,7 +22,7 @@ var generateParenthesis = function(n) {
     return ['()'];
   }
 
-  function getFilteredCombos(arr, pick) {
+  let getFilteredCombos = function(arr, pick) {
     if (!pick) {
       return [[]];
     }
@@ -43,10 +43,10 @@ var generateParenthesis = function(n) {
         return [first].concat(combo);
       })
       .concat(getFilteredCombos(rest, pick));
-  }
+  };
 
   let indices = [...Array(n * 2 - 1).keys()],
-    openIndicesCombos = getFilteredCombos(indices, n, n);
+    openIndicesCombos = getFilteredCombos(indices, n);
 
   return openIndicesCombos.reduce((a, c) => {
     let validComboArr = Array(n * 2).fill(')');
