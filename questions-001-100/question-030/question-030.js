@@ -27,7 +27,16 @@ var findSubstring = function(s, words) {
     return [];
   }
 
-  let originalWordCounts = words.reduce((a, c) => {
+  let leastLetterCount = Infinity,
+    originalWordCounts = words.reduce((a, c) => {
+      let cachedLetters = new Map();
+      for (let i = 0; i < c.length; i++) {
+        if (!cachedLetters.has(c[i])) {
+          cachedLetters.set(c[i], 1);
+        }
+      }
+      leastLetterCount = Math.min(leastLetterCount, cachedLetters.size);
+
       if (!a.has(c)) {
         a.set(c, 1);
       } else {
@@ -66,6 +75,7 @@ var findSubstring = function(s, words) {
       // test again
       if (testForMatch(i, 0)) {
         matches.push(i);
+        i += leastLetterCount - 1;
       }
     }
   }
