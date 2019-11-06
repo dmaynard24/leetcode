@@ -49,7 +49,7 @@ var findSubstring = function(s, words) {
     matchLength = wordLength * words.length,
     matches = [];
 
-  let testForMatch = function(start, totalLength) {
+  let isMatch = function(start, totalLength) {
     if (totalLength == matchLength) {
       return true;
     }
@@ -60,7 +60,7 @@ var findSubstring = function(s, words) {
       if (remainingWordCount > 0) {
         wordCounts.set(word, remainingWordCount - 1);
         let newTotalLength = totalLength + wordLength;
-        return testForMatch(start + wordLength, newTotalLength);
+        return isMatch(start + wordLength, newTotalLength);
       }
     }
 
@@ -73,7 +73,7 @@ var findSubstring = function(s, words) {
       // reset used indices
       wordCounts = new Map(originalWordCounts);
       // test again
-      if (testForMatch(i, 0)) {
+      if (isMatch(i, 0)) {
         matches.push(i);
         i += leastLetterCount - 1;
       }

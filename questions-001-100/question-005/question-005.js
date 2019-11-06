@@ -21,8 +21,9 @@ var longestPalindrome = function(s) {
     return s;
   }
 
-  let longestLength = 1,
-    longest = s.substring(0, 1);
+  let longestStart = 0,
+    longestEnd = 1,
+    longestLength = 1;
 
   for (let i = 0; i < s.length; i++) {
     if (s.length - i < longestLength / 2 + 1) {
@@ -53,12 +54,13 @@ var longestPalindrome = function(s) {
     }
 
     if (length > longestLength) {
-      longest = s.substring(prevI - j + 1, nextI + j);
+      longest = longestStart = prevI - j + 1;
+      longestEnd = nextI + j;
       longestLength = length;
     }
   }
 
-  return longest;
+  return s.substring(longestStart, longestEnd);
 };
 
 module.exports = longestPalindrome;
