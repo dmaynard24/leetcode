@@ -17,7 +17,7 @@
  * @return {string}
  */
 var longestPalindrome = function(s) {
-  if (!s || s.length == 1) {
+  if (s.length <= 1) {
     return s;
   }
 
