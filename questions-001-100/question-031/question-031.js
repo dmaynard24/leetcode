@@ -30,7 +30,20 @@ var nextPermutation = function(nums) {
     return nums.reverse();
   }
 
-  return [nums[0]].concat(nums.slice(1).sort((a, b) => a + b));
+  let len = nums.length;
+  for (let offset = 0; offset < len - 1; offset++) {
+    let first = len - 2 - offset,
+      second = len - 1 - offset;
+
+    // swap with destructuring assignment
+    [nums[first], nums[second]] = [nums[second], nums[first]];
+
+    if (nums[first] > nums[second]) {
+      break;
+    }
+  }
+
+  return nums;
 };
 
 module.exports = nextPermutation;
