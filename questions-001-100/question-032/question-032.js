@@ -26,10 +26,11 @@ var longestValidParentheses = function(s) {
   for (let i = 0; i < s.length; i++) {
     if (s[i] == '(') {
       openStackLen++;
+      localLen = 1;
     } else {
       if (openStackLen > 0) {
         potentialLen += 2;
-        localLen += 2;
+        localLen += 1;
       }
 
       openStackLen--;
@@ -40,18 +41,15 @@ var longestValidParentheses = function(s) {
         potentialLen = 0;
         localLen = 0;
         openStackLen = 0;
+      } else {
+        longest = Math.max(localLen, longest);
       }
     }
   }
 
-  if (openStackLen != 0) {
-    console.log(localLen, potentialLen, longest);
-    return Math.max(localLen, longest);
-  }
-
-  return Math.max(potentialLen, longest);
+  return longest;
 };
 
-console.log(longestValidParentheses('(()(((()'));
+console.log(longestValidParentheses('(()()'));
 
 module.exports = longestValidParentheses;
