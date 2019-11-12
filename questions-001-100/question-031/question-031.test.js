@@ -27,7 +27,3 @@ test('expects the next lexicographic permutation of [2, 3, 1] to be [3, 1, 2]', 
 test('expects the next lexicographic permutation of [1, 4, 3, 2, 2] to be [2, 1, 2, 3, 4]', () => {
   expect(nextPermutation([1, 4, 3, 2, 2])).toStrictEqual([2, 1, 2, 3, 4]);
 });
-
-// move from left to right looking for a digit that's larger than the previous. slice everything starting from the left digit, sort it ascending and concat it.
-
-// edge case: if left digit's index is 0, slice everything staring from the first digit that's larger than nums[0] and unshift nums with it.
