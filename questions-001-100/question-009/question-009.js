@@ -43,18 +43,16 @@ var isPalindrome = function(x) {
     return false;
   }
 
-  let leftIndex = 0,
-    rightIndex = digitsReversed.length - 1;
-  while (rightIndex - leftIndex > 0) {
-    left = digitsReversed[leftIndex];
-    right = digitsReversed[rightIndex];
-
-    if (left != right) {
+  let i = 0,
+    len = digitsReversed.length;
+  // leftIndex = i
+  // rightIndex = len - 1 - i
+  while (len - 1 - i - i > 0) {
+    if (digitsReversed[i] != digitsReversed[len - 1 - i]) {
       return false;
     }
 
-    leftIndex++;
-    rightIndex--;
+    i++;
   }
 
   return true;
