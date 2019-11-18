@@ -18,38 +18,43 @@
  * @return {number}
  */
 var longestValidParentheses = function(s) {
+  let validStrLens = new Map();
+
   let openStackLen = 0,
-    potentialLen = 0,
     localLen = 0,
-    longest = 0;
+    potentialLen = 0;
 
   for (let i = 0; i < s.length; i++) {
     if (s[i] == '(') {
       openStackLen++;
       localLen = 1;
     } else {
-      if (openStackLen > 0) {
-        potentialLen += 2;
+      if (openStackLen >= 0) {
         localLen += 1;
+        potentialLen += 2;
       }
 
       openStackLen--;
-      if (openStackLen == 0) {
-        longest = Math.max(potentialLen, longest);
-        localLen = 0;
-      } else if (openStackLen < 0) {
+      if (openStackLen >= 0) {
+        let currentLen = openStackLen == 0 ? potentialLen : localLen,
+          len = currentLen;
+        if (validStrLens.has(i - currentLen)) {
+          // combine current with adjacent previous length
+          len = validStrLens.get(i - currentLen) + currentLen;
+          validStrLens.delete(i - currentLen);
+        }
+        validStrLens.set(i, len);
+      }
+      if (openStackLen <= 0) {
+        // reset
+        openStackLen = 0;
         potentialLen = 0;
         localLen = 0;
-        openStackLen = 0;
-      } else {
-        longest = Math.max(localLen, longest);
       }
     }
   }
 
-  return longest;
+  return Math.max.apply(null, [...validStrLens.values()]);
 };
-
-console.log(longestValidParentheses('(()()'));
 
 module.exports = longestValidParentheses;
