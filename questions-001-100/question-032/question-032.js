@@ -50,6 +50,6 @@ var longestValidParentheses = function(s) {
   return longest;
 };
 
-console.log(longestValidParentheses('(()()'));
+// console.log(longestValidParentheses('(()()'));
 
 module.exports = longestValidParentheses;
