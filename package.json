@@ -1,7 +1,7 @@
 {
-  "name": "project-euler",
+  "name": "leetcode",
   "version": "1.0.0",
-  "description": "JavaScript solutions for the https://projecteuler.net/archives questions.",
+  "description": "JavaScript solutions to the https://leetcode.com/problemset/all/ problems.",
   "main": "index.js",
   "devDependencies": {
     "big-integer": "^1.6.44",
@@ -14,12 +14,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dmaynard24/project-euler.git"
+    "url": "git+https://github.com/dmaynard24/leetcode.git"
   },
   "keywords": [
     "javascript",
-    "euler",
-    "project",
+    "leetcode",
     "algorithms",
     "math",
     "primes",
@@ -29,9 +28,9 @@
   "author": "Dave Maynard",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dmaynard24/project-euler/issues"
+    "url": "https://github.com/dmaynard24/leetcode/issues"
   },
-  "homepage": "https://github.com/dmaynard24/project-euler#readme",
+  "homepage": "https://github.com/dmaynard24/leetcode#readme",
   "prettier": {
     "singleQuote": true,
     "printWidth": 120,
