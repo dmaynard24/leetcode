@@ -2,6 +2,5 @@
   "editor.formatOnSave": true,
   "[html]": {
     "editor.formatOnSave": false
-  },
-  "editor.tabSize": 2
+  }
 }

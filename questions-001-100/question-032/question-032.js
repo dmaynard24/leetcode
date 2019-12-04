@@ -19,30 +19,27 @@
  */
 var longestValidParentheses = function(s) {
   let openStackLen = 0,
-    potentialLen = 0,
-    localLen = 0,
+    closedStackLen = 0,
     longest = 0;
 
   for (let i = 0; i < s.length; i++) {
     if (s[i] == '(') {
       openStackLen++;
-      localLen = 1;
     } else {
-      if (openStackLen > 0) {
-        potentialLen += 2;
-        localLen += 1;
+      if (s.length - i < openStackLen - closedStackLen) {
+        // invalidate, reset
+        openStackLen = 1;
+        closedStackLen = 0;
       }
 
-      openStackLen--;
-      if (openStackLen == 0) {
-        longest = Math.max(potentialLen, longest);
-        localLen = 0;
-      } else if (openStackLen < 0) {
-        potentialLen = 0;
-        localLen = 0;
-        openStackLen = 0;
+      closedStackLen++;
+
+      if (openStackLen - closedStackLen >= 0) {
+        longest = Math.max(longest, closedStackLen * 2);
       } else {
-        longest = Math.max(localLen, longest);
+        // invalidate, reset
+        openStackLen = 0;
+        closedStackLen = 0;
       }
     }
   }
