@@ -32,30 +32,23 @@
  * @return {string}
  */
 var convert = function(s, numRows) {
-  if (!s) {
+  if (!s || numRows == 1) {
     return s;
   }
 
-  let gridRows = Array(numRows).fill('');
+  let gridRows = Array(numRows).fill(''),
+    currRow = 0,
+    step = 1;
+  for (let i = 0; i < s.length; i++) {
+    gridRows[currRow] += s[i];
+    currRow += step;
 
-  let inputI = 0;
-  while (inputI < s.length) {
-    for (let rowI = 0; rowI < numRows; rowI++) {
-      gridRows[rowI] += s[inputI];
-      inputI++;
-      if (inputI == s.length) {
-        return gridRows.join('');
-      }
-    }
-
-    for (let rowI = numRows - 2; rowI >= 1; rowI--) {
-      gridRows[rowI] += s[inputI];
-      inputI++;
-      if (inputI == s.length) {
-        return gridRows.join('');
-      }
+    if (currRow == numRows - 1 || currRow == 0) {
+      step *= -1;
     }
   }
+
+  return gridRows.join('');
 };
 
 module.exports = convert;
