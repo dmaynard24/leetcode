@@ -28,18 +28,18 @@
 
 
 class Solution:
-  def convert(self, s: str, num_rows: int) -> str:
-    if s is None or num_rows == 1:
-      return s
+	def convert(self, s: str, num_rows: int) -> str:
+		if s is None or num_rows == 1:
+			return s
 
-    grid_rows = [''] * num_rows
-    curr_row = 0
-    step = 1
-    for i in range(len(s)):
-      grid_rows[curr_row] += s[i]
-      curr_row += step
+		grid_rows = [''] * num_rows
+		curr_row = 0
+		step = 1
+		for i in range(len(s)):
+			grid_rows[curr_row] += s[i]
+			curr_row += step
 
-      if curr_row == num_rows - 1 or curr_row == 0:
-        step *= -1
+			if curr_row == num_rows - 1 or curr_row == 0:
+				step *= -1
 
-    return ''.join(grid_rows)
+		return ''.join(grid_rows)

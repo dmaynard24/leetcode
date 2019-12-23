@@ -26,21 +26,21 @@
 
 
 class Solution:
-  def length_of_longest_substring(self, s: str) -> int:
-    longest = 0
-    char_indices = {}
+	def length_of_longest_substring(self, s: str) -> int:
+		longest = 0
+		char_indices = {}
 
-    i = 0
-    for j in range(len(s)):
-      if len(s) - i < longest:
-        break
+		i = 0
+		for j in range(len(s)):
+			if len(s) - i < longest:
+				break
 
-      char = s[j]
-      cached_char_index = char_indices.get(char)
-      if cached_char_index is not None:
-        i = max(cached_char_index, i)
+			char = s[j]
+			cached_char_index = char_indices.get(char)
+			if cached_char_index is not None:
+				i = max(cached_char_index, i)
 
-      longest = max(longest, j - i + 1)
-      char_indices[char] = j + 1
+			longest = max(longest, j - i + 1)
+			char_indices[char] = j + 1
 
-    return longest
+		return longest
