@@ -4,6 +4,7 @@
     "editor.formatOnSave": false
   },
   "editor.tabSize": 2,
+  "editor.insertSpaces": false,
   "python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.8/bin/python3",
   "python.linting.pylintEnabled": true,
   "python.linting.enabled": true,
