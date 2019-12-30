@@ -1,34 +1,34 @@
 {
-  "name": "leetcode",
-  "version": "1.0.0",
-  "description": "JavaScript solutions to the https://leetcode.com/problemset/all/ problems.",
-  "main": "index.js",
-  "devDependencies": {
-    "big-integer": "^1.6.44",
-    "decimal.js": "^10.2.0",
-    "jest": "^24.8.0",
-    "performance-now": "^2.1.0"
-  },
-  "scripts": {
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dmaynard24/leetcode.git"
-  },
-  "keywords": [
-    "javascript",
-    "leetcode",
-    "algorithms",
-    "math",
-    "primes",
-    "prime",
-    "numbers"
-  ],
-  "author": "Dave Maynard",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/dmaynard24/leetcode/issues"
-  },
-  "homepage": "https://github.com/dmaynard24/leetcode#readme"
+	"name": "leetcode",
+	"version": "1.0.0",
+	"description": "JavaScript solutions to the https://leetcode.com/problemset/all/ problems.",
+	"main": "index.js",
+	"devDependencies": {
+		"big-integer": "^1.6.44",
+		"decimal.js": "^10.2.0",
+		"jest": "^24.8.0",
+		"performance-now": "^2.1.0"
+	},
+	"scripts": {
+		"test": "jest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/dmaynard24/leetcode.git"
+	},
+	"keywords": [
+		"javascript",
+		"leetcode",
+		"algorithms",
+		"math",
+		"primes",
+		"prime",
+		"numbers"
+	],
+	"author": "Dave Maynard",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/dmaynard24/leetcode/issues"
+	},
+	"homepage": "https://github.com/dmaynard24/leetcode#readme"
 }
