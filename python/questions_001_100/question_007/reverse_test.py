@@ -1,18 +1,10 @@
 import unittest, reverse
 
 
-class TestReverseOne(unittest.TestCase):
+class TestReverse(unittest.TestCase):
 	def test_reverse(self):
 		self.assertEqual(reverse.Solution().reverse(123), 321)
-
-
-class TestReverseTwo(unittest.TestCase):
-	def test_reverse(self):
 		self.assertEqual(reverse.Solution().reverse(-123), -321)
-
-
-class TestReverseThree(unittest.TestCase):
-	def test_reverse(self):
 		self.assertEqual(reverse.Solution().reverse(120), 21)
 
 
