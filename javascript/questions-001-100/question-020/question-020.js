@@ -34,38 +34,38 @@
  * @return {boolean}
  */
 var isValid = function(s) {
-  if (s == '') {
-    return true;
-  }
+	if (s == '') {
+		return true;
+	}
 
-  if (s.length % 2 == 1) {
-    return false;
-  }
+	if (s.length % 2 == 1) {
+		return false;
+	}
 
-  let closeMap = {
-    ')': '(',
-    ']': '[',
-    '}': '{'
-  };
+	let closeMap = {
+		')': '(',
+		']': '[',
+		'}': '{'
+	};
 
-  if (closeMap[s[0]] !== undefined) {
-    return false;
-  }
+	if (closeMap[s[0]] !== undefined) {
+		return false;
+	}
 
-  let openStack = [];
-  for (let i = 0; i < s.length; i++) {
-    let char = s[i];
+	let openStack = [];
+	for (let i = 0; i < s.length; i++) {
+		let char = s[i];
 
-    if (closeMap[char]) {
-      if (openStack.pop() != closeMap[char]) {
-        return false;
-      }
-    } else {
-      openStack.push(char);
-    }
-  }
+		if (closeMap[char]) {
+			if (openStack.pop() != closeMap[char]) {
+				return false;
+			}
+		} else {
+			openStack.push(char);
+		}
+	}
 
-  return openStack.length == 0;
+	return openStack.length == 0;
 };
 
 module.exports = isValid;

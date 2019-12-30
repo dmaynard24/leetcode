@@ -52,8 +52,8 @@
  * @return {boolean}
  */
 var isMatch = function(s, p) {
-  let matches = s.match(p);
-  return matches != null && matches[0] == s;
+	let matches = s.match(p);
+	return matches != null && matches[0] == s;
 };
 
 module.exports = isMatch;

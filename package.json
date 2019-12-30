@@ -30,10 +30,5 @@
   "bugs": {
     "url": "https://github.com/dmaynard24/leetcode/issues"
   },
-  "homepage": "https://github.com/dmaynard24/leetcode#readme",
-  "prettier": {
-    "singleQuote": true,
-    "printWidth": 120,
-    "tabWidth": 2
-  }
+  "homepage": "https://github.com/dmaynard24/leetcode#readme"
 }

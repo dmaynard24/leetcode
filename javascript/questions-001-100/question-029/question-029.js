@@ -26,22 +26,22 @@
  * @return {number}
  */
 var divide = function(dividend, divisor) {
-  let quotient = 0,
-    absoluteDividend = Math.abs(dividend),
-    dividendIsNegative = absoluteDividend != dividend,
-    absoluteDivisor = Math.abs(divisor),
-    divisorIsNegative = absoluteDivisor != divisor,
-    quotientIsNegative = (dividendIsNegative && !divisorIsNegative) || (!dividendIsNegative && divisorIsNegative);
+	let quotient = 0,
+		absoluteDividend = Math.abs(dividend),
+		dividendIsNegative = absoluteDividend != dividend,
+		absoluteDivisor = Math.abs(divisor),
+		divisorIsNegative = absoluteDivisor != divisor,
+		quotientIsNegative = (dividendIsNegative && !divisorIsNegative) || (!dividendIsNegative && divisorIsNegative);
 
-  while (absoluteDividend >= absoluteDivisor) {
-    quotient = quotientIsNegative ? quotient - 1 : quotient + 1;
-    absoluteDividend -= absoluteDivisor;
-  }
+	while (absoluteDividend >= absoluteDivisor) {
+		quotient = quotientIsNegative ? quotient - 1 : quotient + 1;
+		absoluteDividend -= absoluteDivisor;
+	}
 
-  return quotient;
+	return quotient;
 };
 
 const MAX_SAFE_32BIT_INT = Math.pow(2, 31) - 1,
-  MIN_SAFE_32BIT_INT = MAX_SAFE_32BIT_INT * -1 - 1;
+	MIN_SAFE_32BIT_INT = MAX_SAFE_32BIT_INT * -1 - 1;
 
 module.exports = divide;

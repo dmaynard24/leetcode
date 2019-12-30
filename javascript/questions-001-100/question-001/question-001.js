@@ -18,16 +18,16 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-  let cachedNums = new Map();
+	let cachedNums = new Map();
 
-  for (let i = 0; i < nums.length; i++) {
-    let remaining = cachedNums.get(target - nums[i]);
-    if (remaining !== undefined) {
-      return [remaining, i];
-    }
+	for (let i = 0; i < nums.length; i++) {
+		let remaining = cachedNums.get(target - nums[i]);
+		if (remaining !== undefined) {
+			return [remaining, i];
+		}
 
-    cachedNums.set(nums[i], i);
-  }
+		cachedNums.set(nums[i], i);
+	}
 };
 
 module.exports = twoSum;

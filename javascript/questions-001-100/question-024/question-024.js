@@ -15,23 +15,23 @@ const ListNode = require('../../util/ListNode');
  * @return {ListNode}
  */
 var swapPairs = function(head) {
-  let returnNode = new ListNode(0),
-    node = returnNode;
+	let returnNode = new ListNode(0),
+		node = returnNode;
 
-  while (head != null) {
-    let hasNext = head.next != null;
+	while (head != null) {
+		let hasNext = head.next != null;
 
-    if (hasNext) {
-      node.next = new ListNode(head.next.val);
-      node = node.next;
-    }
-    node.next = new ListNode(head.val);
-    node = node.next;
+		if (hasNext) {
+			node.next = new ListNode(head.next.val);
+			node = node.next;
+		}
+		node.next = new ListNode(head.val);
+		node = node.next;
 
-    head = hasNext ? head.next.next : head.next;
-  }
+		head = hasNext ? head.next.next : head.next;
+	}
 
-  return returnNode.next;
+	return returnNode.next;
 };
 
 module.exports = swapPairs;
