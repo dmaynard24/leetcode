@@ -16,27 +16,27 @@
  * @return {number}
  */
 var maxArea = function(height) {
-  let l = 0,
-    r = height.length - 1,
-    largestArea = 0;
+	let l = 0,
+		r = height.length - 1,
+		largestArea = 0;
 
-  while (l < r) {
-    let leftHeight = height[l],
-      rightHeight = height[r],
-      w = r + 1 - (l + 1),
-      h = Math.min(leftHeight, rightHeight),
-      area = w * h;
+	while (l < r) {
+		let leftHeight = height[l],
+			rightHeight = height[r],
+			w = r + 1 - (l + 1),
+			h = Math.min(leftHeight, rightHeight),
+			area = w * h;
 
-    largestArea = Math.max(largestArea, area);
+		largestArea = Math.max(largestArea, area);
 
-    if (leftHeight < rightHeight) {
-      l++;
-    } else {
-      r--;
-    }
-  }
+		if (leftHeight < rightHeight) {
+			l++;
+		} else {
+			r--;
+		}
+	}
 
-  return largestArea;
+	return largestArea;
 };
 
 module.exports = maxArea;

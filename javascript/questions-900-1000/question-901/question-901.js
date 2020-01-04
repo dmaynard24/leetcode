@@ -1,6 +1,6 @@
 var StockSpanner = function() {
-  this.prices = [];
-  this.spans = [];
+	this.prices = [];
+	this.spans = [];
 };
 
 /**
@@ -8,21 +8,21 @@ var StockSpanner = function() {
  * @return {number}
  */
 StockSpanner.prototype.next = function(price) {
-  this.prices.push(price);
+	this.prices.push(price);
 
-  let span = 1;
-  if (this.prices.length > 1) {
-    let i = this.prices.length - 1;
-    while (i >= 1 && this.prices[i - 1] <= price) {
-      let prevSpan = this.spans[i - 1];
-      span += prevSpan;
-      i -= prevSpan;
-    }
-  }
+	let span = 1;
+	if (this.prices.length > 1) {
+		let i = this.prices.length - 1;
+		while (i >= 1 && this.prices[i - 1] <= price) {
+			let prevSpan = this.spans[i - 1];
+			span += prevSpan;
+			i -= prevSpan;
+		}
+	}
 
-  this.spans.push(span);
+	this.spans.push(span);
 
-  return span;
+	return span;
 };
 
 /**
