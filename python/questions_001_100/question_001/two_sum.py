@@ -14,12 +14,12 @@
 
 
 class Solution:
-	def two_sum(self, nums: [int], target: int) -> [int]:
-		cached_nums = {}
+  def two_sum(self, nums: [int], target: int) -> [int]:
+    cached_nums = {}
 
-		for i in range(len(nums)):
-			remaining = cached_nums.get(target - nums[i])
-			if remaining is not None:
-				return [remaining, i]
+    for i in range(len(nums)):
+      remaining = cached_nums.get(target - nums[i])
+      if remaining is not None:
+        return [remaining, i]
 
-			cached_nums[nums[i]] = i
+      cached_nums[nums[i]] = i

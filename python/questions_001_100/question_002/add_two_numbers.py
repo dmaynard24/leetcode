@@ -25,30 +25,30 @@ from python.util import listnode
 
 
 class Solution:
-	def add_two_numbers(self, l1: listnode.ListNode,
-		l2: listnode.ListNode) -> listnode.ListNode:
-		carry = 0
-		return_node = listnode.ListNode(0)
-		node = return_node
+  def add_two_numbers(self, l1: listnode.ListNode,
+                      l2: listnode.ListNode) -> listnode.ListNode:
+    carry = 0
+    return_node = listnode.ListNode(0)
+    node = return_node
 
-		while l1 is not None or l2 is not None:
-			l1_val = l1.val if l1 is not None else 0
-			l2_val = l2.val if l2 is not None else 0
-			node_sum = l1_val + l2_val + carry
+    while l1 is not None or l2 is not None:
+      l1_val = l1.val if l1 is not None else 0
+      l2_val = l2.val if l2 is not None else 0
+      node_sum = l1_val + l2_val + carry
 
-			if node_sum >= 10:
-				carry = node_sum // 10
-				node_sum %= 10
-			else:
-				carry = 0
+      if node_sum >= 10:
+        carry = node_sum // 10
+        node_sum %= 10
+      else:
+        carry = 0
 
-			node.next = listnode.ListNode(node_sum)
-			node = node.next
+      node.next = listnode.ListNode(node_sum)
+      node = node.next
 
-			l1 = l1.next if l1 is not None else None
-			l2 = l2.next if l2 is not None else None
+      l1 = l1.next if l1 is not None else None
+      l2 = l2.next if l2 is not None else None
 
-		if carry > 0:
-			node.next = listnode.ListNode(carry)
+    if carry > 0:
+      node.next = listnode.ListNode(carry)
 
-		return return_node.next
+    return return_node.next

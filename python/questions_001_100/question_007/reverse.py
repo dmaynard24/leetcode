@@ -20,21 +20,21 @@
 
 
 class Solution:
-	def reverse(self, x: int) -> int:
-		is_negative = False
+  def reverse(self, x: int) -> int:
+    is_negative = False
 
-		if x < 0:
-			is_negative = True
-			x *= -1
+    if x < 0:
+      is_negative = True
+      x *= -1
 
-		reversed_num = 0
-		while x > 0:
-			reversed_num = reversed_num * 10 + (x % 10)
-			x //= 10
+    reversed_num = 0
+    while x > 0:
+      reversed_num = reversed_num * 10 + (x % 10)
+      x //= 10
 
-		num = reversed_num * -1 if is_negative else reversed_num
+    num = reversed_num * -1 if is_negative else reversed_num
 
-		MAX_SAFE_32BIT_INT = 2**31 - 1
-		MIN_SAFE_32BIT_INT = MAX_SAFE_32BIT_INT * -1 - 1
+    MAX_SAFE_32BIT_INT = 2**31 - 1
+    MIN_SAFE_32BIT_INT = MAX_SAFE_32BIT_INT * -1 - 1
 
-		return 0 if num > MAX_SAFE_32BIT_INT or num < MIN_SAFE_32BIT_INT else num
+    return 0 if num > MAX_SAFE_32BIT_INT or num < MIN_SAFE_32BIT_INT else num
