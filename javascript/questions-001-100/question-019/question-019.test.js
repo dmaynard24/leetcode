@@ -1,5 +1,5 @@
 const removeNthFromEnd = require('./question-019'),
-	ListNode = require('../../util/ListNode');
+  ListNode = require('../../util/ListNode');
 
 let l1 = new ListNode(1);
 l1.next = new ListNode(2);
@@ -13,5 +13,5 @@ solutionNode.next.next = new ListNode(3);
 solutionNode.next.next.next = new ListNode(5);
 
 test('expects that removing the 2nd node from the end of the list (1 -> 2 -> 3 -> 4 -> 5) will result in (1 -> 2 -> 3 -> 5)', () => {
-	expect(removeNthFromEnd(l1, 2)).toStrictEqual(solutionNode);
+  expect(removeNthFromEnd(l1, 2)).toStrictEqual(solutionNode);
 });

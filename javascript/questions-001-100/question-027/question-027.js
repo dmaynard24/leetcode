@@ -23,17 +23,17 @@
  * @return {number}
  */
 var removeElement = function(nums, val) {
-	let i = 0;
-	for (let j = 0; j < nums.length; j++) {
-		if (nums[j] != val) {
-			nums[i] = nums[j];
-			i++;
-		}
-	}
+  let i = 0;
+  for (let j = 0; j < nums.length; j++) {
+    if (nums[j] != val) {
+      nums[i] = nums[j];
+      i++;
+    }
+  }
 
-	nums.splice(i);
+  nums.splice(i);
 
-	return nums.length;
+  return nums.length;
 };
 
 module.exports = removeElement;

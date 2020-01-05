@@ -22,25 +22,25 @@
  * @return {string}
  */
 var longestCommonPrefix = function(strs) {
-	if (strs.length == 0) {
-		return '';
-	}
+  if (strs.length == 0) {
+    return '';
+  }
 
-	let prefix = '';
+  let prefix = '';
 
-	for (let i = 0; i < strs[0].length; i++) {
-		let allMatch = true;
-		for (let j = 1; j < strs.length; j++) {
-			allMatch = strs[j - 1][i] === strs[j][i];
-			if (!allMatch) {
-				return prefix;
-			}
-		}
+  for (let i = 0; i < strs[0].length; i++) {
+    let allMatch = true;
+    for (let j = 1; j < strs.length; j++) {
+      allMatch = strs[j - 1][i] === strs[j][i];
+      if (!allMatch) {
+        return prefix;
+      }
+    }
 
-		prefix += strs[0][i];
-	}
+    prefix += strs[0][i];
+  }
 
-	return prefix;
+  return prefix;
 };
 
 module.exports = longestCommonPrefix;

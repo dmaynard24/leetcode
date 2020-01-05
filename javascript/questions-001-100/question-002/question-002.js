@@ -19,34 +19,34 @@ const ListNode = require('../../util/ListNode');
  * @return {ListNode}
  */
 var addTwoNumbers = function(l1, l2) {
-	let carry = 0,
-		returnNode = new ListNode(0),
-		node = returnNode;
+  let carry = 0,
+    returnNode = new ListNode(0),
+    node = returnNode;
 
-	while (l1 != null || l2 != null) {
-		let l1Val = l1 != null ? l1.val : 0,
-			l2Val = l2 != null ? l2.val : 0,
-			sum = l1Val + l2Val + carry;
+  while (l1 != null || l2 != null) {
+    let l1Val = l1 != null ? l1.val : 0,
+      l2Val = l2 != null ? l2.val : 0,
+      sum = l1Val + l2Val + carry;
 
-		if (sum >= 10) {
-			carry = Math.floor(sum / 10);
-			sum = sum % 10;
-		} else {
-			carry = 0;
-		}
+    if (sum >= 10) {
+      carry = Math.floor(sum / 10);
+      sum = sum % 10;
+    } else {
+      carry = 0;
+    }
 
-		node.next = new ListNode(sum);
-		node = node.next;
+    node.next = new ListNode(sum);
+    node = node.next;
 
-		l1 = l1 && l1.next ? l1.next : null;
-		l2 = l2 && l2.next ? l2.next : null;
-	}
+    l1 = l1 && l1.next ? l1.next : null;
+    l2 = l2 && l2.next ? l2.next : null;
+  }
 
-	if (carry > 0) {
-		node.next = new ListNode(carry);
-	}
+  if (carry > 0) {
+    node.next = new ListNode(carry);
+  }
 
-	return returnNode.next;
+  return returnNode.next;
 };
 
 module.exports = addTwoNumbers;

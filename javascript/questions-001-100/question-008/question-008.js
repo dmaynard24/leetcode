@@ -45,49 +45,49 @@
  * @return {number}
  */
 var myAtoi = function(str) {
-	const MAX_SAFE_32BIT_INT = Math.pow(2, 31) - 1,
-		MIN_SAFE_32BIT_INT = MAX_SAFE_32BIT_INT * -1 - 1;
+  const MAX_SAFE_32BIT_INT = Math.pow(2, 31) - 1,
+    MIN_SAFE_32BIT_INT = MAX_SAFE_32BIT_INT * -1 - 1;
 
-	str = str.trim();
+  str = str.trim();
 
-	let ans = 0,
-		isNegative = false;
+  let ans = 0,
+    isNegative = false;
 
-	for (let i = 0; i < str.length; i++) {
-		let char = str[i];
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
 
-		if (char == '-' || char == '+') {
-			if (i > 0) {
-				break;
-			}
+    if (char == '-' || char == '+') {
+      if (i > 0) {
+        break;
+      }
 
-			if (char == '-') {
-				isNegative = true;
-			}
+      if (char == '-') {
+        isNegative = true;
+      }
 
-			continue;
-		}
+      continue;
+    }
 
-		let int = parseInt(char, 10);
-		if (Number.isNaN(int)) {
-			break;
-		}
+    let int = parseInt(char, 10);
+    if (Number.isNaN(int)) {
+      break;
+    }
 
-		ans *= 10;
-		ans += int;
-	}
+    ans *= 10;
+    ans += int;
+  }
 
-	let num = isNegative ? ans * -1 : ans;
+  let num = isNegative ? ans * -1 : ans;
 
-	if (num > MAX_SAFE_32BIT_INT) {
-		return MAX_SAFE_32BIT_INT;
-	}
+  if (num > MAX_SAFE_32BIT_INT) {
+    return MAX_SAFE_32BIT_INT;
+  }
 
-	if (num < MIN_SAFE_32BIT_INT) {
-		return MIN_SAFE_32BIT_INT;
-	}
+  if (num < MIN_SAFE_32BIT_INT) {
+    return MIN_SAFE_32BIT_INT;
+  }
 
-	return num;
+  return num;
 };
 
 module.exports = myAtoi;

@@ -1,5 +1,5 @@
 const mergeTwoLists = require('./question-021'),
-	ListNode = require('../../util/ListNode');
+  ListNode = require('../../util/ListNode');
 
 let l1 = new ListNode(1);
 l1.next = new ListNode(2);
@@ -17,7 +17,7 @@ solutionNode.next.next.next.next = new ListNode(4);
 solutionNode.next.next.next.next.next = new ListNode(4);
 
 test('expects that merging the two lists (1 -> 2 -> 4) and (1 -> 3 -> 4) will result in (1 -> 1 -> 2 -> 3 -> 4 -> 4)', () => {
-	expect(mergeTwoLists(l1, l2)).toStrictEqual(solutionNode);
+  expect(mergeTwoLists(l1, l2)).toStrictEqual(solutionNode);
 });
 
 let l3 = new ListNode(5);
@@ -32,5 +32,5 @@ nextSolutionNode.next.next = new ListNode(4);
 nextSolutionNode.next.next.next = new ListNode(5);
 
 test('expects that merging the two lists (5) and (1 -> 2 -> 4) will result in (1 -> 2 -> 4 -> 5)', () => {
-	expect(mergeTwoLists(l3, l4)).toStrictEqual(nextSolutionNode);
+  expect(mergeTwoLists(l3, l4)).toStrictEqual(nextSolutionNode);
 });

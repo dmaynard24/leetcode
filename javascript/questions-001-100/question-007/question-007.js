@@ -23,24 +23,24 @@
  * @return {number}
  */
 var reverse = function(x) {
-	let isNegative = false;
+  let isNegative = false;
 
-	if (x < 0) {
-		isNegative = true;
-		x *= -1;
-	}
+  if (x < 0) {
+    isNegative = true;
+    x *= -1;
+  }
 
-	let reversed = 0;
-	while (x > 0) {
-		reversed = reversed * 10 + (x % 10);
-		x = Math.floor(x / 10);
-	}
+  let reversed = 0;
+  while (x > 0) {
+    reversed = reversed * 10 + (x % 10);
+    x = Math.floor(x / 10);
+  }
 
-	let num = isNegative ? reversed * -1 : reversed;
+  let num = isNegative ? reversed * -1 : reversed;
 
-	const MAX_SAFE_32BIT_INT = Math.pow(2, 31) - 1,
-		MIN_SAFE_32BIT_INT = MAX_SAFE_32BIT_INT * -1 - 1;
-	return num > MAX_SAFE_32BIT_INT || num < MIN_SAFE_32BIT_INT ? 0 : num;
+  const MAX_SAFE_32BIT_INT = Math.pow(2, 31) - 1,
+    MIN_SAFE_32BIT_INT = MAX_SAFE_32BIT_INT * -1 - 1;
+  return num > MAX_SAFE_32BIT_INT || num < MIN_SAFE_32BIT_INT ? 0 : num;
 };
 
 module.exports = reverse;

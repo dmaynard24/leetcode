@@ -13,27 +13,27 @@
  * @return {number}
  */
 var threeSumClosest = function(nums, target) {
-	let closestSum = nums[0] + nums[1] + nums[2],
-		smallestDiff = Math.abs(target - closestSum);
+  let closestSum = nums[0] + nums[1] + nums[2],
+    smallestDiff = Math.abs(target - closestSum);
 
-	for (let i = 0; i < nums.length; i++) {
-		for (let j = i + 1; j < nums.length; j++) {
-			for (let k = j + 1; k < nums.length; k++) {
-				let setSum = nums[i] + nums[j] + nums[k];
-				if (setSum == target) {
-					return setSum;
-				}
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      for (let k = j + 1; k < nums.length; k++) {
+        let setSum = nums[i] + nums[j] + nums[k];
+        if (setSum == target) {
+          return setSum;
+        }
 
-				let diff = Math.abs(target - setSum);
-				if (diff < smallestDiff) {
-					closestSum = setSum;
-					smallestDiff = diff;
-				}
-			}
-		}
-	}
+        let diff = Math.abs(target - setSum);
+        if (diff < smallestDiff) {
+          closestSum = setSum;
+          smallestDiff = diff;
+        }
+      }
+    }
+  }
 
-	return closestSum;
+  return closestSum;
 };
 
 module.exports = threeSumClosest;

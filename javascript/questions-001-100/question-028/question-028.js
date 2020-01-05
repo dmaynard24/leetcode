@@ -19,34 +19,34 @@
  * @return {number}
  */
 var strStr = function(haystack, needle) {
-	if (needle.length == 0) {
-		return 0;
-	}
+  if (needle.length == 0) {
+    return 0;
+  }
 
-	for (let i = 0; i < haystack.length - needle.length + 1; i++) {
-		if (haystack[i] != needle[0]) {
-			continue;
-		}
+  for (let i = 0; i < haystack.length - needle.length + 1; i++) {
+    if (haystack[i] != needle[0]) {
+      continue;
+    }
 
-		if (needle.length == 1) {
-			return i;
-		}
+    if (needle.length == 1) {
+      return i;
+    }
 
-		if (needle.length > 1) {
-			let j = 1;
-			while (j < needle.length) {
-				if (haystack[i + j] != needle[j]) {
-					break;
-				}
-				j++;
-			}
-			if (j == needle.length) {
-				return i;
-			}
-		}
-	}
+    if (needle.length > 1) {
+      let j = 1;
+      while (j < needle.length) {
+        if (haystack[i + j] != needle[j]) {
+          break;
+        }
+        j++;
+      }
+      if (j == needle.length) {
+        return i;
+      }
+    }
+  }
 
-	return -1;
+  return -1;
 };
 
 module.exports = strStr;

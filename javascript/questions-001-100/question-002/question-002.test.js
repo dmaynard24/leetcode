@@ -1,5 +1,5 @@
 const addTwoNumbers = require('./question-002'),
-	ListNode = require('../../util/ListNode');
+  ListNode = require('../../util/ListNode');
 
 let l1 = new ListNode(2);
 l1.next = new ListNode(4);
@@ -14,5 +14,5 @@ solutionNode.next = new ListNode(0);
 solutionNode.next.next = new ListNode(8);
 
 test('expects the result of adding reversed digits of two linked lists (2 -> 4 -> 3) + (5 -> 6 -> 4) to be (7 -> 0 -> 8)', () => {
-	expect(addTwoNumbers(l1, l2)).toStrictEqual(solutionNode);
+  expect(addTwoNumbers(l1, l2)).toStrictEqual(solutionNode);
 });

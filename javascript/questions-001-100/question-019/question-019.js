@@ -20,24 +20,24 @@ const ListNode = require('../../util/ListNode');
  * @return {ListNode}
  */
 var removeNthFromEnd = function(head, n) {
-	let returnNode = new ListNode(0);
-	returnNode.next = head;
+  let returnNode = new ListNode(0);
+  returnNode.next = head;
 
-	let first = returnNode,
-		second = returnNode;
+  let first = returnNode,
+    second = returnNode;
 
-	for (let i = 0; i < n + 1; i++) {
-		first = first.next;
-	}
+  for (let i = 0; i < n + 1; i++) {
+    first = first.next;
+  }
 
-	while (first != null) {
-		first = first.next;
-		second = second.next;
-	}
+  while (first != null) {
+    first = first.next;
+    second = second.next;
+  }
 
-	second.next = second.next.next;
+  second.next = second.next.next;
 
-	return returnNode.next;
+  return returnNode.next;
 };
 
 module.exports = removeNthFromEnd;

@@ -21,34 +21,34 @@ const ListNode = require('../../util/ListNode');
  * @return {ListNode}
  */
 var reverseKGroup = function(head, k) {
-	let returnNode = new ListNode(0),
-		node = returnNode;
+  let returnNode = new ListNode(0),
+    node = returnNode;
 
-	while (head != null) {
-		let dummyHead = head,
-			nextVals = [dummyHead.val];
-		for (let i = 0; i < k - 1; i++) {
-			let nextVal = dummyHead.next;
-			if (nextVal == null) {
-				break;
-			}
-			nextVals.push(dummyHead.next.val);
-			dummyHead = dummyHead.next;
-		}
+  while (head != null) {
+    let dummyHead = head,
+      nextVals = [dummyHead.val];
+    for (let i = 0; i < k - 1; i++) {
+      let nextVal = dummyHead.next;
+      if (nextVal == null) {
+        break;
+      }
+      nextVals.push(dummyHead.next.val);
+      dummyHead = dummyHead.next;
+    }
 
-		if (nextVals.length == k) {
-			for (let i = k - 1; i >= 0; i--) {
-				node.next = new ListNode(nextVals[i]);
-				node = node.next;
-			}
-		} else {
-			node.next = head;
-		}
+    if (nextVals.length == k) {
+      for (let i = k - 1; i >= 0; i--) {
+        node.next = new ListNode(nextVals[i]);
+        node = node.next;
+      }
+    } else {
+      node.next = head;
+    }
 
-		head = dummyHead.next;
-	}
+    head = dummyHead.next;
+  }
 
-	return returnNode.next;
+  return returnNode.next;
 };
 
 module.exports = reverseKGroup;

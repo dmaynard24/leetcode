@@ -23,54 +23,54 @@
  * @return {number[]}
  */
 var findSubstring = function(s, words) {
-	if (s.length < 1 || words.length < 1) {
-		return [];
-	}
+  if (s.length < 1 || words.length < 1) {
+    return [];
+  }
 
-	let originalWordCounts = words.reduce((a, c) => {
-			if (!a.has(c)) {
-				a.set(c, 1);
-			} else {
-				a.set(c, a.get(c) + 1);
-			}
-			return a;
-		}, new Map()),
-		wordCounts,
-		wordLength = words[0].length,
-		matchLength = wordLength * words.length,
-		matches = [];
+  let originalWordCounts = words.reduce((a, c) => {
+      if (!a.has(c)) {
+        a.set(c, 1);
+      } else {
+        a.set(c, a.get(c) + 1);
+      }
+      return a;
+    }, new Map()),
+    wordCounts,
+    wordLength = words[0].length,
+    matchLength = wordLength * words.length,
+    matches = [];
 
-	let isMatch = function(start, totalLength) {
-		if (totalLength == matchLength) {
-			return true;
-		}
+  let isMatch = function(start, totalLength) {
+    if (totalLength == matchLength) {
+      return true;
+    }
 
-		let word = s.substr(start, wordLength);
-		if (wordCounts.has(word)) {
-			let remainingWordCount = wordCounts.get(word);
-			if (remainingWordCount > 0) {
-				wordCounts.set(word, remainingWordCount - 1);
-				let newTotalLength = totalLength + wordLength;
-				return isMatch(start + wordLength, newTotalLength);
-			}
-		}
+    let word = s.substr(start, wordLength);
+    if (wordCounts.has(word)) {
+      let remainingWordCount = wordCounts.get(word);
+      if (remainingWordCount > 0) {
+        wordCounts.set(word, remainingWordCount - 1);
+        let newTotalLength = totalLength + wordLength;
+        return isMatch(start + wordLength, newTotalLength);
+      }
+    }
 
-		return false;
-	};
+    return false;
+  };
 
-	for (let i = 0; i < s.length - matchLength + 1; i++) {
-		let firstWord = s.substr(i, wordLength);
-		if (originalWordCounts.has(firstWord)) {
-			// reset used indices
-			wordCounts = new Map(originalWordCounts);
-			// test again
-			if (isMatch(i, 0)) {
-				matches.push(i);
-			}
-		}
-	}
+  for (let i = 0; i < s.length - matchLength + 1; i++) {
+    let firstWord = s.substr(i, wordLength);
+    if (originalWordCounts.has(firstWord)) {
+      // reset used indices
+      wordCounts = new Map(originalWordCounts);
+      // test again
+      if (isMatch(i, 0)) {
+        matches.push(i);
+      }
+    }
+  }
 
-	return matches;
+  return matches;
 };
 
 module.exports = findSubstring;

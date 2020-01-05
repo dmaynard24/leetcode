@@ -18,33 +18,33 @@
  * @return {number}
  */
 var longestValidParentheses = function(s) {
-	let openStackLen = 0,
-		closedStackLen = 0,
-		longest = 0;
+  let openStackLen = 0,
+    closedStackLen = 0,
+    longest = 0;
 
-	for (let i = 0; i < s.length; i++) {
-		if (s[i] == '(') {
-			openStackLen++;
-		} else {
-			if (s.length - i < openStackLen - closedStackLen) {
-				// invalidate, reset
-				openStackLen = 1;
-				closedStackLen = 0;
-			}
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] == '(') {
+      openStackLen++;
+    } else {
+      if (s.length - i < openStackLen - closedStackLen) {
+        // invalidate, reset
+        openStackLen = 1;
+        closedStackLen = 0;
+      }
 
-			closedStackLen++;
+      closedStackLen++;
 
-			if (openStackLen - closedStackLen >= 0) {
-				longest = Math.max(longest, closedStackLen * 2);
-			} else {
-				// invalidate, reset
-				openStackLen = 0;
-				closedStackLen = 0;
-			}
-		}
-	}
+      if (openStackLen - closedStackLen >= 0) {
+        longest = Math.max(longest, closedStackLen * 2);
+      } else {
+        // invalidate, reset
+        openStackLen = 0;
+        closedStackLen = 0;
+      }
+    }
+  }
 
-	return longest;
+  return longest;
 };
 
 // console.log(longestValidParentheses('(()()'));
