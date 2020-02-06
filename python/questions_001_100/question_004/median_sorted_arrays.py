@@ -19,14 +19,14 @@
 
 # The median is (2 + 3)/2 = 2.5
 
-import math, sys
+import sys
 
 
 class Solution:
   def find_median_sorted_arrays(self, nums1: [int], nums2: [int]) -> float:
     def find_median_single_sorted_array(nums: [int]) -> float:
       length = len(nums)
-      mid_index = math.floor(length / 2)
+      mid_index = length // 2
       if length % 2 == 1:
         return nums[mid_index]
       else:
@@ -46,8 +46,8 @@ class Solution:
     low = 0
     high = x_length
     while low <= high:
-      partition_x = math.floor((low + high) / 2)
-      partition_y = math.floor((x_length + y_length + 1) / 2) - partition_x
+      partition_x = (low + high) // 2
+      partition_y = (x_length + y_length + 1) // 2 - partition_x
       low_x = None
       if partition_x - 1 > -1 and partition_x - 1 < len(nums1):
         low_x = nums1[partition_x - 1]

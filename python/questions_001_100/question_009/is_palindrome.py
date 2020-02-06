@@ -20,8 +20,6 @@
 
 # Could you solve it without converting the integer to a string?
 
-import math
-
 
 class Solution:
   def is_palindrome(self, x: int) -> bool:
@@ -34,12 +32,12 @@ class Solution:
     digits_reversed = []
     while x > 0:
       digits_reversed.append(x % 10)
-      x = math.floor(x / 10)
+      x = x // 10
 
     if digits_reversed[0] == 0:
       return False
 
-    for i in range(int(len(digits_reversed) / 2)):
+    for i in range(len(digits_reversed) // 2):
       # left_index = i
       # right_index = length - 1 - i
       if digits_reversed[i] != digits_reversed[-1 - i]:
