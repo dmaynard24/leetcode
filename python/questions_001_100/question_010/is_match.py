@@ -50,6 +50,6 @@ import re
 
 
 class Solution:
-  def isMatch(self, s: str, p: str) -> bool:
+  def is_match(self, s: str, p: str) -> bool:
     matches = re.match(p, s)
-    return matches != None and matches[0] == s
+    return matches is not None and matches[0] == s
