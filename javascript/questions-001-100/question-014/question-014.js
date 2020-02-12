@@ -26,19 +26,17 @@ var longestCommonPrefix = function(strs) {
     return '';
   }
 
-  let prefix = '';
+  strs.sort();
+  let minStr = strs[0],
+    maxStr = strs[strs.length - 1];
 
-  for (let i = 0; i < strs[0].length; i++) {
-    for (let j = 1; j < strs.length; j++) {
-      if (strs[j - 1][i] !== strs[j][i]) {
-        return prefix;
-      }
+  for (let [i, char] of [...minStr].entries()) {
+    if (char != maxStr[i]) {
+      return minStr.substring(0, i);
     }
-
-    prefix += strs[0][i];
   }
 
-  return prefix;
+  return minStr;
 };
 
 module.exports = longestCommonPrefix;

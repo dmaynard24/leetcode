@@ -23,11 +23,11 @@ class Solution:
     if len(strs) == 0:
       return ''
 
-    shortest = min(strs)
-    longest = max(strs)
+    min_str = min(strs)
+    max_str = max(strs)
 
-    for i, char in enumerate(shortest):
-      if char != longest[i]:
-        return shortest[:i]
+    for i, char in enumerate(min_str):
+      if char != max_str[i]:
+        return min_str[:i]
 
-    return shortest
+    return min_str
