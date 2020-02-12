@@ -23,8 +23,11 @@ class Solution:
     if len(strs) == 0:
       return ''
 
-    for i, chars in enumerate(zip(*strs)):
-      if len(set(chars)) > 1:
-        return strs[0][:i]
+    shortest = min(strs)
+    longest = max(strs)
 
-    return min(strs)
+    for i, char in enumerate(shortest):
+      if char != longest[i]:
+        return shortest[:i]
+
+    return shortest
