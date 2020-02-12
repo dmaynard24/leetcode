@@ -1,7 +1,7 @@
 import unittest, int_to_roman
 
 
-class TestMaxArea(unittest.TestCase):
+class TestIntToRoman(unittest.TestCase):
   def test_int_to_roman(self):
     self.assertEqual(int_to_roman.Solution().int_to_roman(3), 'III')
     self.assertEqual(int_to_roman.Solution().int_to_roman(4), 'IV')
