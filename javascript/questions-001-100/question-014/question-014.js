@@ -29,10 +29,8 @@ var longestCommonPrefix = function(strs) {
   let prefix = '';
 
   for (let i = 0; i < strs[0].length; i++) {
-    let allMatch = true;
     for (let j = 1; j < strs.length; j++) {
-      allMatch = strs[j - 1][i] === strs[j][i];
-      if (!allMatch) {
+      if (strs[j - 1][i] !== strs[j][i]) {
         return prefix;
       }
     }
