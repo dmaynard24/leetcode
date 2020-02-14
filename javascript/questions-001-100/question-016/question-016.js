@@ -13,22 +13,29 @@
  * @return {number}
  */
 var threeSumClosest = function(nums, target) {
-  let closestSum = nums[0] + nums[1] + nums[2],
-    smallestDiff = Math.abs(target - closestSum);
+  nums.sort((a, b) => a - b);
+  let closestSum = nums[0] + nums[1] + nums[2];
+  let smallestDiff = Math.abs(target - closestSum);
 
-  for (let i = 0; i < nums.length; i++) {
-    for (let j = i + 1; j < nums.length; j++) {
-      for (let k = j + 1; k < nums.length; k++) {
-        let setSum = nums[i] + nums[j] + nums[k];
-        if (setSum == target) {
-          return setSum;
-        }
+  for (let i = 0; i < nums.length - 2; i++) {
+    let j = i + 1;
+    let k = nums.length - 1;
+    while (j < k) {
+      let setSum = nums[i] + nums[j] + nums[k];
+      if (setSum === target) {
+        return setSum;
+      }
 
-        let diff = Math.abs(target - setSum);
-        if (diff < smallestDiff) {
-          closestSum = setSum;
-          smallestDiff = diff;
-        }
+      let diff = Math.abs(target - setSum);
+      if (diff < smallestDiff) {
+        closestSum = setSum;
+        smallestDiff = diff;
+      }
+
+      if (setSum < target) {
+        j++;
+      } else {
+        k--;
       }
     }
   }

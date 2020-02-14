@@ -9,7 +9,7 @@
 
 
 class Solution:
-  def three_sum_closest(self, nums: [int], target: int) -> int:
+  def threeSumClosest(self, nums: [int], target: int) -> int:
     nums.sort()
     closest_sum = nums[0] + nums[1] + nums[2]
     smallest_diff = abs(target - closest_sum)
@@ -29,7 +29,7 @@ class Solution:
 
         if set_sum < target:
           j += 1
-        else:
+        elif set_sum > target:
           k -= 1
 
     return closest_sum
