@@ -47,37 +47,37 @@
  * @param {number} num
  * @return {string}
  */
-var intToRoman = function(num) {
-  let symbolVals = {
-      M: 1000,
-      D: 500,
-      C: 100,
-      L: 50,
-      X: 10,
-      V: 5,
-      I: 1
-    },
-    symbols = Object.keys(symbolVals),
-    roman = '';
+const intToRoman = function(num) {
+  const symbolVals = {
+    M: 1000,
+    D: 500,
+    C: 100,
+    L: 50,
+    X: 10,
+    V: 5,
+    I: 1,
+  };
+  const symbols = Object.keys(symbolVals);
+  let roman = ``;
 
   symbols.forEach((symbol, i) => {
-    let symbolVal = symbolVals[symbol];
+    const symbolVal = symbolVals[symbol];
 
     if (num / symbolVal >= 1) {
       if (i > 0) {
-        let prevSymbolVal = symbolVals[symbols[i - 1]];
+        const prevSymbolVal = symbolVals[symbols[i - 1]];
 
         if (i < symbols.length - 1) {
-          let nextSymbolVal = symbolVals[symbols[i + 1]];
+          const nextSymbolVal = symbolVals[symbols[i + 1]];
 
-          if (prevSymbolVal == symbolVal * 2 && num >= prevSymbolVal - nextSymbolVal) {
+          if (prevSymbolVal === symbolVal * 2 && num >= prevSymbolVal - nextSymbolVal) {
             // 9
             roman += symbols[i + 1] + symbols[i - 1];
             num -= nextSymbolVal * 9;
           }
         }
 
-        if (prevSymbolVal == symbolVal * 5 && num >= prevSymbolVal - symbolVal) {
+        if (prevSymbolVal === symbolVal * 5 && num >= prevSymbolVal - symbolVal) {
           // 4
           roman += symbol + symbols[i - 1];
           num -= symbolVal * 4;

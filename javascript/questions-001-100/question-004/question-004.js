@@ -19,12 +19,17 @@
 
 // The median is (2 + 3)/2 = 2.5
 
+const findMedianSingleSortedArray = function(nums) {
+  const len = nums.length;
+  return len % 2 === 1 ? nums[Math.floor(len / 2)] : (nums[len / 2 - 1] + nums[len / 2]) / 2;
+};
+
 /**
  * @param {number[]} nums1
  * @param {number[]} nums2
  * @return {number}
  */
-var findMedianSortedArrays = function(nums1, nums2) {
+const findMedianSortedArrays = function(nums1, nums2) {
   if (nums1.length < 1) {
     return findMedianSingleSortedArray(nums2);
   }
@@ -37,35 +42,32 @@ var findMedianSortedArrays = function(nums1, nums2) {
     return findMedianSortedArrays(nums2, nums1);
   }
 
-  let xLength = nums1.length,
-    yLength = nums2.length,
-    low = 0,
-    high = xLength;
+  const xLength = nums1.length;
+  const yLength = nums2.length;
+  let low = 0;
+  let high = xLength;
   while (low <= high) {
-    let partitionX = Math.floor((low + high) / 2),
-      partitionY = Math.floor((xLength + yLength + 1) / 2) - partitionX,
-      lowX = nums1[partitionX - 1] ? nums1[partitionX - 1] : Number.MIN_SAFE_INTEGER,
-      highX = nums1[partitionX] ? nums1[partitionX] : Number.MAX_SAFE_INTEGER,
-      lowY = nums2[partitionY - 1] ? nums2[partitionY - 1] : Number.MIN_SAFE_INTEGER,
-      highY = nums2[partitionY] ? nums2[partitionY] : Number.MAX_SAFE_INTEGER;
+    const partitionX = Math.floor((low + high) / 2);
+    const partitionY = Math.floor((xLength + yLength + 1) / 2) - partitionX;
+    const lowX = nums1[partitionX - 1] ? nums1[partitionX - 1] : Number.MIN_SAFE_INTEGER;
+    const highX = nums1[partitionX] ? nums1[partitionX] : Number.MAX_SAFE_INTEGER;
+    const lowY = nums2[partitionY - 1] ? nums2[partitionY - 1] : Number.MIN_SAFE_INTEGER;
+    const highY = nums2[partitionY] ? nums2[partitionY] : Number.MAX_SAFE_INTEGER;
 
     if (lowX <= highY && lowY <= highX) {
-      if ((xLength + yLength) % 2 == 0) {
+      if ((xLength + yLength) % 2 === 0) {
         return (Math.max(lowX, lowY) + Math.min(highX, highY)) / 2;
-      } else {
-        return Math.max(lowX, lowY);
       }
-    } else if (lowX > highY) {
+      return Math.max(lowX, lowY);
+    }
+    if (lowX > highY) {
       high = partitionX - 1;
     } else {
       low = partitionX + 1;
     }
   }
-};
 
-var findMedianSingleSortedArray = function(nums) {
-  let len = nums.length;
-  return len % 2 == 1 ? nums[Math.floor(len / 2)] : (nums[len / 2 - 1] + nums[len / 2]) / 2;
+  return 0;
 };
 
 module.exports = findMedianSortedArrays;

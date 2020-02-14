@@ -33,31 +33,31 @@
  * @param {string} s
  * @return {boolean}
  */
-var isValid = function(s) {
-  if (s == '') {
+const isValid = function(s) {
+  if (s === ``) {
     return true;
   }
 
-  if (s.length % 2 == 1) {
+  if (s.length % 2 === 1) {
     return false;
   }
 
-  let closeMap = {
-    ')': '(',
-    ']': '[',
-    '}': '{'
+  const closeMap = {
+    ')': `(`,
+    ']': `[`,
+    '}': `{`,
   };
 
   if (closeMap[s[0]] !== undefined) {
     return false;
   }
 
-  let openStack = [];
+  const openStack = [];
   for (let i = 0; i < s.length; i++) {
-    let char = s[i];
+    const char = s[i];
 
     if (closeMap[char]) {
-      if (openStack.pop() != closeMap[char]) {
+      if (openStack.pop() !== closeMap[char]) {
         return false;
       }
     } else {
@@ -65,7 +65,7 @@ var isValid = function(s) {
     }
   }
 
-  return openStack.length == 0;
+  return openStack.length === 0;
 };
 
 module.exports = isValid;

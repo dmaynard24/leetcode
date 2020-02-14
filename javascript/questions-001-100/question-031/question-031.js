@@ -17,7 +17,7 @@
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
  */
-var nextPermutation = function(nums) {
+const nextPermutation = function(nums) {
   // move from left to right looking for a digit that's larger than the previous.
   // continue looking, don't break out.
   // slice everything starting from the left digit. sort it ascending.
@@ -25,8 +25,8 @@ var nextPermutation = function(nums) {
 
   let smallerI;
   for (let i = 1; i < nums.length; i++) {
-    let prev = nums[i - 1],
-      curr = nums[i];
+    const prev = nums[i - 1];
+    const curr = nums[i];
 
     if (curr > prev) {
       smallerI = i - 1;
@@ -40,9 +40,9 @@ var nextPermutation = function(nums) {
   let arr;
 
   if (smallerI !== 0) {
-    let smallerVal = nums[smallerI],
-      sortedSlice = nums.slice(smallerI).sort((a, b) => a - b),
-      firstLargerI;
+    const smallerVal = nums[smallerI];
+    const sortedSlice = nums.slice(smallerI).sort((a, b) => a - b);
+    let firstLargerI;
     for (let i = 0; i < sortedSlice.length; i++) {
       if (sortedSlice[i] > smallerVal) {
         firstLargerI = i;

@@ -12,20 +12,20 @@
 // ]
 // Output: 1->1->2->3->4->4->5->6
 
-const mergeTwoLists = require('../question-021/question-021'),
-  ListNode = require('../../util/ListNode');
+const mergeTwoLists = require(`../question-021/question-021`);
+const ListNode = require(`../../util/ListNode`);
 
 /**
  * @param {ListNode[]} lists
  * @return {ListNode}
  */
-var mergeKLists = function(lists) {
-  if (lists.length == 0) {
+const mergeKLists = function(lists) {
+  if (lists.length === 0) {
     return null; // this is dumb, but leetcode won't pass without it
   }
 
   while (lists.length > 1) {
-    let offset = lists.length % 2 == 0 ? 1 : 2;
+    const offset = lists.length % 2 === 0 ? 1 : 2;
     for (let i = 0; i < lists.length - offset; i += 2) {
       lists.splice(i, 2, mergeTwoLists(lists[i], lists[i + 1]));
     }

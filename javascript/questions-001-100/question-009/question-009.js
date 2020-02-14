@@ -24,7 +24,7 @@
  * @param {number} x
  * @return {boolean}
  */
-var isPalindrome = function(x) {
+const isPalindrome = function(x) {
   if (x < 0) {
     return false;
   }
@@ -33,20 +33,20 @@ var isPalindrome = function(x) {
     return true;
   }
 
-  let digitsReversed = [];
+  const digitsReversed = [];
   while (x > 0) {
     digitsReversed.push(x % 10);
     x = Math.floor(x / 10);
   }
 
-  if (digitsReversed[0] == 0) {
+  if (digitsReversed[0] === 0) {
     return false;
   }
 
   for (let i = 0; i < digitsReversed.length / 2; i++) {
     // leftIndex = i
     // rightIndex = length - 1 - i
-    if (digitsReversed[i] != digitsReversed[digitsReversed.length - 1 - i]) {
+    if (digitsReversed[i] !== digitsReversed[digitsReversed.length - 1 - i]) {
       return false;
     }
   }

@@ -25,13 +25,13 @@
  * @param {number} divisor
  * @return {number}
  */
-var divide = function(dividend, divisor) {
-  let quotient = 0,
-    absoluteDividend = Math.abs(dividend),
-    dividendIsNegative = absoluteDividend != dividend,
-    absoluteDivisor = Math.abs(divisor),
-    divisorIsNegative = absoluteDivisor != divisor,
-    quotientIsNegative = (dividendIsNegative && !divisorIsNegative) || (!dividendIsNegative && divisorIsNegative);
+const divide = function(dividend, divisor) {
+  let quotient = 0;
+  let absoluteDividend = Math.abs(dividend);
+  const dividendIsNegative = absoluteDividend !== dividend;
+  const absoluteDivisor = Math.abs(divisor);
+  const divisorIsNegative = absoluteDivisor !== divisor;
+  const quotientIsNegative = (dividendIsNegative && !divisorIsNegative) || (!dividendIsNegative && divisorIsNegative);
 
   while (absoluteDividend >= absoluteDivisor) {
     quotient = quotientIsNegative ? quotient - 1 : quotient + 1;
@@ -40,8 +40,5 @@ var divide = function(dividend, divisor) {
 
   return quotient;
 };
-
-const MAX_SAFE_32BIT_INT = Math.pow(2, 31) - 1,
-  MIN_SAFE_32BIT_INT = MAX_SAFE_32BIT_INT * -1 - 1;
 
 module.exports = divide;

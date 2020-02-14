@@ -12,25 +12,25 @@
 
 // Given n will always be valid.
 
-const ListNode = require('../../util/ListNode');
+const ListNode = require(`../../util/ListNode`);
 
 /**
  * @param {ListNode} head
  * @param {number} n
  * @return {ListNode}
  */
-var removeNthFromEnd = function(head, n) {
-  let returnNode = new ListNode(0);
+const removeNthFromEnd = function(head, n) {
+  const returnNode = new ListNode(0);
   returnNode.next = head;
 
-  let first = returnNode,
-    second = returnNode;
+  let first = returnNode;
+  let second = returnNode;
 
   for (let i = 0; i < n + 1; i++) {
     first = first.next;
   }
 
-  while (first != null) {
+  while (first !== null) {
     first = first.next;
     second = second.next;
   }

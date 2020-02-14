@@ -21,7 +21,7 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-var threeSum = function(nums) {
+const threeSum = function(nums) {
   if (nums.length < 3) {
     return [];
   }
@@ -29,12 +29,12 @@ var threeSum = function(nums) {
   // must sort
   nums.sort((a, b) => a - b);
 
-  let solutionSet = [],
-    cachedTermIndices = new Map();
+  const solutionSet = [];
+  const cachedTermIndices = new Map();
 
   // start by caching terms indices
   for (let i = 0; i < nums.length; i++) {
-    if (cachedTermIndices.get(nums[i]) == undefined) {
+    if (cachedTermIndices.get(nums[i]) === undefined) {
       cachedTermIndices.set(nums[i], [i]);
     } else {
       cachedTermIndices.get(nums[i]).push(i);
@@ -42,23 +42,23 @@ var threeSum = function(nums) {
   }
 
   for (let i = 0; i < nums.length; i++) {
-    if (nums[i] == nums[i - 1]) {
+    if (nums[i] === nums[i - 1]) {
       continue;
     }
-    let firstTerm = nums[i];
+    const firstTerm = nums[i];
 
     for (let j = i + 1; j < nums.length; j++) {
-      let secondTerm = nums[j],
-        thirdTerm = (firstTerm + secondTerm) * -1,
-        thirdTermIndices = cachedTermIndices.get(thirdTerm);
-      if (thirdTermIndices == undefined) {
+      const secondTerm = nums[j];
+      const thirdTerm = (firstTerm + secondTerm) * -1;
+      const thirdTermIndices = cachedTermIndices.get(thirdTerm);
+      if (thirdTermIndices === undefined) {
         continue;
       }
 
       for (let k = 0; k < thirdTermIndices.length; k++) {
         if (thirdTermIndices[k] > j) {
-          let prevSet = solutionSet[solutionSet.length - 1];
-          if (prevSet == undefined || prevSet[0] != firstTerm || prevSet[1] != secondTerm || prevSet[2] != thirdTerm) {
+          const prevSet = solutionSet[solutionSet.length - 1];
+          if (prevSet === undefined || prevSet[0] !== firstTerm || prevSet[1] !== secondTerm || prevSet[2] !== thirdTerm) {
             solutionSet.push([firstTerm, secondTerm, thirdTerm]);
           }
           break;

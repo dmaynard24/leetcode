@@ -21,17 +21,17 @@
  * @param {string[]} strs
  * @return {string}
  */
-var longestCommonPrefix = function(strs) {
-  if (strs.length == 0) {
-    return '';
+const longestCommonPrefix = function(strs) {
+  if (strs.length === 0) {
+    return ``;
   }
 
   strs.sort();
-  let minStr = strs[0],
-    maxStr = strs[strs.length - 1];
+  const minStr = strs[0];
+  const maxStr = strs[strs.length - 1];
 
-  for (let [i, char] of [...minStr].entries()) {
-    if (char != maxStr[i]) {
+  for (let i = 0; i < minStr.length; i++) {
+    if (minStr[i] !== maxStr[i]) {
       return minStr.substring(0, i);
     }
   }

@@ -51,9 +51,9 @@
  * @param {string} p
  * @return {boolean}
  */
-var isMatch = function(s, p) {
-  let matches = s.match(p);
-  return matches != null && matches[0] == s;
+const isMatch = function(s, p) {
+  const matches = s.match(p);
+  return matches !== null && matches[0] === s;
 };
 
 module.exports = isMatch;

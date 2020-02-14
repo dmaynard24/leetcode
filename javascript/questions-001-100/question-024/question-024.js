@@ -8,18 +8,18 @@
 // Example:
 // Given 1->2->3->4, you should return the list as 2->1->4->3.
 
-const ListNode = require('../../util/ListNode');
+const ListNode = require(`../../util/ListNode`);
 
 /**
  * @param {ListNode} head
  * @return {ListNode}
  */
-var swapPairs = function(head) {
-  let returnNode = new ListNode(0),
-    node = returnNode;
+const swapPairs = function(head) {
+  const returnNode = new ListNode(0);
+  let node = returnNode;
 
-  while (head != null) {
-    let hasNext = head.next != null;
+  while (head !== null) {
+    const hasNext = head.next !== null;
 
     if (hasNext) {
       node.next = new ListNode(head.next.val);

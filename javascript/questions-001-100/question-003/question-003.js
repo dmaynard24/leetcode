@@ -28,9 +28,9 @@
  * @param {string} s
  * @return {number}
  */
-var lengthOfLongestSubstring = function(s) {
-  let longest = 0,
-    charIndices = new Map();
+const lengthOfLongestSubstring = function(s) {
+  let longest = 0;
+  const charIndices = new Map();
 
   let i = 0;
   for (let j = 0; j < s.length; j++) {
@@ -38,8 +38,8 @@ var lengthOfLongestSubstring = function(s) {
       break;
     }
 
-    let char = s[j],
-      cachedCharIndex = charIndices.get(char);
+    const char = s[j];
+    const cachedCharIndex = charIndices.get(char);
     if (cachedCharIndex) {
       i = Math.max(cachedCharIndex, i);
     }

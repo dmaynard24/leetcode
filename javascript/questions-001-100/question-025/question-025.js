@@ -13,30 +13,30 @@
 
 // For k = 3, you should return: 3->2->1->4->5
 
-const ListNode = require('../../util/ListNode');
+const ListNode = require(`../../util/ListNode`);
 
 /**
  * @param {ListNode} head
  * @param {number} k
  * @return {ListNode}
  */
-var reverseKGroup = function(head, k) {
-  let returnNode = new ListNode(0),
-    node = returnNode;
+const reverseKGroup = function(head, k) {
+  const returnNode = new ListNode(0);
+  let node = returnNode;
 
-  while (head != null) {
-    let dummyHead = head,
-      nextVals = [dummyHead.val];
+  while (head !== null) {
+    let dummyHead = head;
+    const nextVals = [dummyHead.val];
     for (let i = 0; i < k - 1; i++) {
-      let nextVal = dummyHead.next;
-      if (nextVal == null) {
+      const nextVal = dummyHead.next;
+      if (nextVal === null) {
         break;
       }
       nextVals.push(dummyHead.next.val);
       dummyHead = dummyHead.next;
     }
 
-    if (nextVals.length == k) {
+    if (nextVals.length === k) {
       for (let i = k - 1; i >= 0; i--) {
         node.next = new ListNode(nextVals[i]);
         node = node.next;

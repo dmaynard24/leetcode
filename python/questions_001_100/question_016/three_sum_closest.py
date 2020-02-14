@@ -29,7 +29,7 @@ class Solution:
 
         if set_sum < target:
           j += 1
-        elif set_sum > target:
+        else:
           k -= 1
 
     return closest_sum

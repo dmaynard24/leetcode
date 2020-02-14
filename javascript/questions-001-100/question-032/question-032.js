@@ -17,13 +17,13 @@
  * @param {string} s
  * @return {number}
  */
-var longestValidParentheses = function(s) {
-  let openStackLen = 0,
-    closedStackLen = 0,
-    longest = 0;
+const longestValidParentheses = function(s) {
+  let openStackLen = 0;
+  let closedStackLen = 0;
+  let longest = 0;
 
   for (let i = 0; i < s.length; i++) {
-    if (s[i] == '(') {
+    if (s[i] === `(`) {
       openStackLen++;
     } else {
       if (s.length - i < openStackLen - closedStackLen) {

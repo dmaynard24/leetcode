@@ -23,7 +23,7 @@
  * @param {number} target
  * @return {number[][]}
  */
-var fourSum = function(nums, target) {
+const fourSum = function(nums, target) {
   if (nums.length < 4) {
     return [];
   }
@@ -31,13 +31,13 @@ var fourSum = function(nums, target) {
   // must sort
   nums.sort((a, b) => a - b);
 
-  let solutionSet = [],
-    cachedTermIndices = new Map(),
-    cachedSets = new Map();
+  const solutionSet = [];
+  const cachedTermIndices = new Map();
+  const cachedSets = new Map();
 
   // start by caching terms indices
   for (let i = 0; i < nums.length; i++) {
-    if (cachedTermIndices.get(nums[i]) == undefined) {
+    if (cachedTermIndices.get(nums[i]) === undefined) {
       cachedTermIndices.set(nums[i], [i]);
     } else {
       cachedTermIndices.get(nums[i]).push(i);
@@ -45,29 +45,29 @@ var fourSum = function(nums, target) {
   }
 
   for (let i = 0; i < nums.length; i++) {
-    if (nums[i] == nums[i - 1]) {
+    if (nums[i] === nums[i - 1]) {
       continue;
     }
-    let firstTerm = nums[i];
+    const firstTerm = nums[i];
 
     for (let j = i + 1; j < nums.length; j++) {
-      let secondTerm = nums[j];
+      const secondTerm = nums[j];
 
       for (let k = j + 1; k < nums.length; k++) {
-        let thirdTerm = nums[k];
+        const thirdTerm = nums[k];
 
-        let fourthTerm = target - (firstTerm + secondTerm + thirdTerm),
-          fourthTermIndices = cachedTermIndices.get(fourthTerm);
-        if (fourthTermIndices == undefined) {
+        const fourthTerm = target - (firstTerm + secondTerm + thirdTerm);
+        const fourthTermIndices = cachedTermIndices.get(fourthTerm);
+        if (fourthTermIndices === undefined) {
           continue;
         }
 
         for (let l = 0; l < fourthTermIndices.length; l++) {
           if (fourthTermIndices[l] > k) {
-            let set = [firstTerm, secondTerm, thirdTerm, fourthTerm],
-              cachedSetKey = set.join(),
-              cachedSet = cachedSets.get(cachedSetKey);
-            if (cachedSet != 1) {
+            const set = [firstTerm, secondTerm, thirdTerm, fourthTerm];
+            const cachedSetKey = set.join();
+            const cachedSet = cachedSets.get(cachedSetKey);
+            if (cachedSet !== 1) {
               solutionSet.push(set);
               cachedSets.set(cachedSetKey, 1);
             }

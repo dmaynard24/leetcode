@@ -17,12 +17,12 @@
  * @param {number} n
  * @return {string[]}
  */
-var generateParenthesis = function(n) {
-  if (n == 1) {
-    return ['()'];
+const generateParenthesis = function(n) {
+  if (n === 1) {
+    return [`()`];
   }
 
-  let getFilteredCombos = function(arr, pick) {
+  const getFilteredCombos = function(arr, pick) {
     if (!pick) {
       return [[]];
     }
@@ -30,8 +30,8 @@ var generateParenthesis = function(n) {
       return [];
     }
 
-    let first = arr[0],
-      rest = arr.slice(1);
+    const first = arr[0];
+    const rest = arr.slice(1);
 
     // filter based on well-formed parens rule
     if (first > (n - pick) * 2) {
@@ -39,21 +39,19 @@ var generateParenthesis = function(n) {
     }
 
     return getFilteredCombos(rest, pick - 1)
-      .map(combo => {
-        return [first].concat(combo);
-      })
+      .map((combo) => [first].concat(combo))
       .concat(getFilteredCombos(rest, pick));
   };
 
-  let indices = [...Array(n * 2 - 1).keys()],
-    openIndicesCombos = getFilteredCombos(indices, n);
+  const indices = [...Array(n * 2 - 1).keys()];
+  const openIndicesCombos = getFilteredCombos(indices, n);
 
   return openIndicesCombos.reduce((a, c) => {
-    let validComboArr = Array(n * 2).fill(')');
-    c.forEach(i => {
-      validComboArr.splice(i, 1, '(');
+    const validComboArr = Array(n * 2).fill(`)`);
+    c.forEach((i) => {
+      validComboArr.splice(i, 1, `(`);
     });
-    return a.concat(validComboArr.join(''));
+    return a.concat(validComboArr.join(``));
   }, []);
 };
 

@@ -44,31 +44,31 @@
  * @param {string} str
  * @return {number}
  */
-var myAtoi = function(str) {
-  const MAX_SAFE_32BIT_INT = Math.pow(2, 31) - 1,
-    MIN_SAFE_32BIT_INT = MAX_SAFE_32BIT_INT * -1 - 1;
+const myAtoi = function(str) {
+  const MAX_SAFE_32BIT_INT = 2 ** 31 - 1;
+  const MIN_SAFE_32BIT_INT = MAX_SAFE_32BIT_INT * -1 - 1;
 
   str = str.trim();
 
-  let ans = 0,
-    isNegative = false;
+  let ans = 0;
+  let isNegative = false;
 
   for (let i = 0; i < str.length; i++) {
-    let char = str[i];
+    const char = str[i];
 
-    if (char == '-' || char == '+') {
+    if (char === `-` || char === `+`) {
       if (i > 0) {
         break;
       }
 
-      if (char == '-') {
+      if (char === `-`) {
         isNegative = true;
       }
 
       continue;
     }
 
-    let int = parseInt(char, 10);
+    const int = parseInt(char, 10);
     if (Number.isNaN(int)) {
       break;
     }
@@ -77,7 +77,7 @@ var myAtoi = function(str) {
     ans += int;
   }
 
-  let num = isNegative ? ans * -1 : ans;
+  const num = isNegative ? ans * -1 : ans;
 
   if (num > MAX_SAFE_32BIT_INT) {
     return MAX_SAFE_32BIT_INT;

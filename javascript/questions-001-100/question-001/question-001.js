@@ -17,17 +17,19 @@
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function(nums, target) {
-  let cachedNums = new Map();
+const twoSum = function(nums, target) {
+  const cachedNums = new Map();
 
   for (let i = 0; i < nums.length; i++) {
-    let remaining = cachedNums.get(target - nums[i]);
+    const remaining = cachedNums.get(target - nums[i]);
     if (remaining !== undefined) {
       return [remaining, i];
     }
 
     cachedNums.set(nums[i], i);
   }
+
+  return [0, 0];
 };
 
 module.exports = twoSum;

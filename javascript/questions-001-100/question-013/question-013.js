@@ -46,21 +46,21 @@
  * @param {string} s
  * @return {number}
  */
-var romanToInt = function(s) {
-  let symbolVals = {
-      M: 1000,
-      D: 500,
-      C: 100,
-      L: 50,
-      X: 10,
-      V: 5,
-      I: 1
-    },
-    returnInt = symbolVals[s[s.length - 1]];
+const romanToInt = function(s) {
+  const symbolVals = {
+    M: 1000,
+    D: 500,
+    C: 100,
+    L: 50,
+    X: 10,
+    V: 5,
+    I: 1,
+  };
+  let returnInt = symbolVals[s[s.length - 1]];
 
   for (let i = s.length - 2; i >= 0; i--) {
-    let currSymbolVal = symbolVals[s[i]],
-      prevSymbolVal = symbolVals[s[i + 1]];
+    const currSymbolVal = symbolVals[s[i]];
+    const prevSymbolVal = symbolVals[s[i + 1]];
 
     if (prevSymbolVal > currSymbolVal) {
       returnInt -= currSymbolVal;
