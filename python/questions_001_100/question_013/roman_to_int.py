@@ -58,9 +58,9 @@ class Solution:
 
     for i in range(len(s) - 2, -1, -1):
       curr_symbol_val = symbol_vals[s[i]]
-      prev_symbol_val = symbol_vals[s[i + 1]]
+      left_symbol_val = symbol_vals[s[i + 1]]
 
-      if prev_symbol_val > curr_symbol_val:
+      if left_symbol_val > curr_symbol_val:
         return_int -= curr_symbol_val
       else:
         return_int += curr_symbol_val
