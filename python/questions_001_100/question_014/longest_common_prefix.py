@@ -23,8 +23,9 @@ class Solution:
     if len(strs) == 0:
       return ''
 
-    min_str = min(strs)
-    max_str = max(strs)
+    strs.sort()
+    min_str = strs[0]
+    max_str = strs[-1]
 
     for i, char in enumerate(min_str):
       if char != max_str[i]:
