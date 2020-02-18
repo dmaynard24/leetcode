@@ -55,9 +55,10 @@ const isValid = function(s) {
   const openStack = [];
   for (let i = 0; i < s.length; i++) {
     const char = s[i];
+    const closeChar = closeMap[char];
 
-    if (closeMap[char]) {
-      if (openStack.pop() !== closeMap[char]) {
+    if (closeChar) {
+      if (openStack.pop() !== closeChar) {
         return false;
       }
     } else {
