@@ -42,33 +42,23 @@ class Solution:
           return False
       return True
 
-    def place_next_queen(y, x, placed_coords):
-      if x >= n:
-        if len(placed_coords) > 0:
-          prev_placed_coords = placed_coords.pop()
-          return place_next_queen(y - 1, prev_placed_coords[1] + 1,
-                                  placed_coords)
-        else:
-          return []
-
+    def place_next_queen(y, x, placed_coords, solution_set):
       if len(placed_coords) == n:
-        return placed_coords
+        solution_set.append(placed_coords[:])
 
-      if is_valid_place(y, x, placed_coords):
-        placed_coords.append([y, x])
-        return place_next_queen(y + 1, 0, placed_coords)
+      for next_x in range(x, n):
+        if is_valid_place(y, next_x, placed_coords):
+          placed_coords.append([y, next_x])
+          return place_next_queen(y + 1, 0, placed_coords, solution_set)
+
+      if len(placed_coords) > 0:
+        prev_placed_coords = placed_coords.pop()
+        return place_next_queen(y - 1, prev_placed_coords[1] + 1,
+                                placed_coords, solution_set)
       else:
-        return place_next_queen(y, x + 1, placed_coords)
+        return solution_set
 
-    solution_set = []
-    x = 0
-    while x < n - 1:
-      # y is 0 because we only start with the top row
-      solution = place_next_queen(0, x, [])
-      if len(solution) == 0:
-        return solution
-      solution_set.append(solution)
-      x = solution[0][1] + 1
+    solution_set = place_next_queen(0, 0, [], [])
 
     boards = []
     for solution in solution_set:
