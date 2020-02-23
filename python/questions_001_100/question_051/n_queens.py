@@ -34,17 +34,15 @@ class Solution:
     has_even_extent = n % 2 == 0
 
     def get_board_from_coords(coords):
-      board = []
-      row = ''
-      for coord in coords:
-        row = ('.' * (n - (n - coord[1]))) + 'Q' + ('.' * (n - coord[1] - 1))
-        board.append(row)
-      return board
+      return list(
+          map(
+              lambda coord: ('.' * (n - (n - coord))) + 'Q' +
+              ('.' * (n - coord - 1)), coords))
 
     def is_valid_place(test_y, test_x, placed_coords):
-      for pc in placed_coords:
+      for pc_y, pc in enumerate(placed_coords):
         # invalid vertically or invalid diagonally
-        if test_x == pc[1] or abs(test_x - pc[1]) == abs(test_y - pc[0]):
+        if test_x == pc or abs(test_x - pc) == abs(test_y - pc_y):
           return False
       return True
 
@@ -59,22 +57,22 @@ class Solution:
 
       if len(placed_coords) == n:
         if has_even_extent or (has_even_extent == False
-                               and placed_coords[0][1] < n // 2):
+                               and placed_coords[0] < n // 2):
           reflected_coords = []
           for coord in placed_coords:
-            reflected_coords.append([coord[0], n - coord[1] - 1])
+            reflected_coords.append(n - coord - 1)
           solution_set.append(get_board_from_coords(reflected_coords))
         solution_set.append(get_board_from_coords(placed_coords))
 
       for next_x in range(x, n):
         if is_valid_place(y, next_x, placed_coords):
-          placed_coords.append([y, next_x])
+          placed_coords.append(next_x)
           return place_next_queen(y + 1, 0, placed_coords, solution_set)
 
       if len(placed_coords) > 0:
         prev_placed_coords = placed_coords.pop()
-        return place_next_queen(y - 1, prev_placed_coords[1] + 1,
-                                placed_coords, solution_set)
+        return place_next_queen(y - 1, prev_placed_coords + 1, placed_coords,
+                                solution_set)
 
     return place_next_queen(0, 0, [], [])
 
