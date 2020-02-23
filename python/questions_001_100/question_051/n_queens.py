@@ -30,10 +30,16 @@ class Solution:
     if n == 1:
       return [['Q']]
 
-    no_corners = False
     # if extent of a side is an even number
-    if n % 2 == 0:
-      no_corners = True
+    has_even_extent = n % 2 == 0
+
+    def get_board_from_coords(coords):
+      board = []
+      row = ''
+      for coord in coords:
+        row = ('.' * (n - (n - coord[1]))) + 'Q' + ('.' * (n - coord[1] - 1))
+        board.append(row)
+      return board
 
     def is_valid_place(test_y, test_x, placed_coords):
       for pc in placed_coords:
@@ -43,8 +49,22 @@ class Solution:
       return True
 
     def place_next_queen(y, x, placed_coords, solution_set):
+      if len(placed_coords) == 0:
+        if has_even_extent:
+          if x == n // 2:
+            return solution_set
+        else:
+          if x == n // 2 + 1:
+            return solution_set
+
       if len(placed_coords) == n:
-        solution_set.append(placed_coords[:])
+        if has_even_extent or (has_even_extent == False
+                               and placed_coords[0][1] < n // 2):
+          reflected_coords = []
+          for coord in placed_coords:
+            reflected_coords.append([coord[0], n - coord[1] - 1])
+          solution_set.append(get_board_from_coords(reflected_coords))
+        solution_set.append(get_board_from_coords(placed_coords))
 
       for next_x in range(x, n):
         if is_valid_place(y, next_x, placed_coords):
@@ -55,21 +75,8 @@ class Solution:
         prev_placed_coords = placed_coords.pop()
         return place_next_queen(y - 1, prev_placed_coords[1] + 1,
                                 placed_coords, solution_set)
-      else:
-        return solution_set
 
-    solution_set = place_next_queen(0, 0, [], [])
-
-    boards = []
-    for solution in solution_set:
-      board = []
-      row = ''
-      for coord in solution:
-        row = ('.' * (n - (n - coord[1]))) + 'Q' + ('.' * (n - coord[1] - 1))
-        board.append(row)
-      boards.append(board)
-
-    return boards
+    return place_next_queen(0, 0, [], [])
 
 
 print(Solution().solveNQueens(4))
