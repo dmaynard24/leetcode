@@ -78,6 +78,3 @@ class Solution:
       return solution_set
 
     return place_next_queen([], set(), set())
-
-
-print(Solution().solveNQueens(4))
