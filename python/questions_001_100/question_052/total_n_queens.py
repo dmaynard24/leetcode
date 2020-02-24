@@ -30,36 +30,31 @@ class Solution:
     # if extent of a side is an even number
     has_even_extent = n % 2 == 0
 
-    def is_valid_place(test_y, test_x, placed_coords):
-      for pc_y, pc in enumerate(placed_coords):
-        # invalid vertically or invalid diagonally
-        if test_x == pc or abs(test_x - pc) == abs(test_y - pc_y):
-          return False
-      return True
+    def place_next_queen(placed_x_coords, xy_diffs, xy_sums):
+      total = 0
+      y = len(placed_x_coords)
 
-    def place_next_queen(y, x, placed_coords, total):
-      if len(placed_coords) == 0:
-        if has_even_extent:
-          if x == n // 2:
-            return total
-        else:
-          if x == n // 2 + 1:
-            return total
-
-      if len(placed_coords) == n:
+      if y == n:
         if has_even_extent or (has_even_extent == False
-                               and placed_coords[0] < n // 2):
+                               and placed_x_coords[0] < n // 2):
           total += 1
         total += 1
 
-      for next_x in range(x, n):
-        if is_valid_place(y, next_x, placed_coords):
-          placed_coords.append(next_x)
-          return place_next_queen(y + 1, 0, placed_coords, total)
+      for x in range(n):
+        xy_diff = y - x
+        xy_sum = y + x
+        if x not in placed_x_coords and xy_diff not in xy_diffs and xy_sum not in xy_sums:
+          # base case
+          if y == 0:
+            if has_even_extent:
+              if x == n // 2:
+                break
+            else:
+              if x == n // 2 + 1:
+                break
+          total += place_next_queen(placed_x_coords + [x],
+                                    xy_diffs + [xy_diff], xy_sums + [xy_sum])
 
-      if len(placed_coords) > 0:
-        prev_placed_coords = placed_coords.pop()
-        return place_next_queen(y - 1, prev_placed_coords + 1, placed_coords,
-                                total)
+      return total
 
-    return place_next_queen(0, 0, [], 0)
+    return place_next_queen([], [], [])
