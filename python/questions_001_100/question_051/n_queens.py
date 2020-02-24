@@ -30,53 +30,54 @@ class Solution:
     if n == 1:
       return [['Q']]
 
-    # if extent of a side is an even number
-    has_even_extent = n % 2 == 0
-
     def get_board_from_coords(coords):
       return [
           '.' * (n - (n - coord)) + 'Q' + '.' * (n - coord - 1)
           for coord in coords
       ]
 
-    def place_next_queen(x, placed_x_coords, xy_diffs, xy_sums, solution_set):
+    def place_next_queen(placed_x_coords, xy_diffs, xy_sums):
       y = len(placed_x_coords)
 
-      # base case
-      if y == 0:
-        if has_even_extent:
-          if x == n // 2:
-            return solution_set
-        else:
-          if x == n // 2 + 1:
-            return solution_set
+      solution_set = []
 
       if y == n:
-        if has_even_extent or (has_even_extent == False
-                               and placed_x_coords[0] < n // 2):
+        # reflect coords for every column except the center of a board with an odd extent
+        if placed_x_coords[0] < n // 2:
           reflected_coords = [n - coord - 1 for coord in placed_x_coords]
           solution_set.append(get_board_from_coords(reflected_coords))
         solution_set.append(get_board_from_coords(placed_x_coords))
+        return solution_set
 
-      for next_x in range(x, n):
+      for next_x in range(n):
+        # break out after checking all solutions for the first half of the board
+        if y == 0:
+          # add 1 and floor it to account for boards with both even and odd extents
+          if next_x == (n + 1) // 2:
+            break
+
         xy_diff = y - next_x
         xy_sum = y + next_x
-        # check if is valid place
-        if next_x not in placed_x_coords and xy_diff not in xy_diffs and xy_sum not in xy_sums:
-          placed_x_coords.append(next_x)
-          xy_diffs.append(xy_diff)
-          xy_sums.append(xy_sum)
-          return place_next_queen(0, placed_x_coords, xy_diffs, xy_sums,
-                                  solution_set)
 
-      if y > 0:
-        prev_placed_x_coords = placed_x_coords.pop()
-        xy_diffs.pop()
-        xy_sums.pop()
-        return place_next_queen(prev_placed_x_coords + 1, placed_x_coords,
-                                xy_diffs, xy_sums, solution_set)
+        # invalid place
+        if next_x in placed_x_coords or xy_diff in xy_diffs or xy_sum in xy_sums:
+          continue
 
-    return place_next_queen(0, [], [], [], [])
+        placed_x_coords.append(next_x)
+        xy_diffs.add(xy_diff)
+        xy_sums.add(xy_sum)
+
+        next_solutions = place_next_queen(placed_x_coords, xy_diffs, xy_sums)
+        solution_set.extend(next_solutions)
+
+        # backtrack
+        placed_x_coords.pop()
+        xy_diffs.remove(xy_diff)
+        xy_sums.remove(xy_sum)
+
+      return solution_set
+
+    return place_next_queen([], set(), set())
 
 
-print(Solution().solveNQueens(5))
+print(Solution().solveNQueens(4))
