@@ -34,10 +34,10 @@ class Solution:
     has_even_extent = n % 2 == 0
 
     def get_board_from_coords(coords):
-      return list(
-          map(
-              lambda coord: ('.' * (n - (n - coord))) + 'Q' +
-              ('.' * (n - coord - 1)), coords))
+      return [
+          '.' * (n - (n - coord)) + 'Q' + '.' * (n - coord - 1)
+          for coord in coords
+      ]
 
     def is_valid_place(test_y, test_x, placed_coords):
       for pc_y, pc in enumerate(placed_coords):
@@ -75,3 +75,6 @@ class Solution:
                                 solution_set)
 
     return place_next_queen(0, 0, [], [])
+
+
+print(Solution().solveNQueens(4))
