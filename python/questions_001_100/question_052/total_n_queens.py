@@ -23,7 +23,7 @@
 
 
 class Solution:
-  def totalNQueens(self, n: int) -> int:
+  def total_n_queens(self, n: int) -> int:
     if n == 1:
       return 1
 
