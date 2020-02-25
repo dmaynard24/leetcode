@@ -26,7 +26,7 @@
 
 
 class Solution:
-  def solveNQueens(self, n: int) -> [[str]]:
+  def solve_n_queens(self, n: int) -> [[str]]:
     if n == 1:
       return [['Q']]
 
@@ -66,8 +66,8 @@ class Solution:
         xy_diffs.add(xy_diff)
         xy_sums.add(xy_sum)
 
-        next_solutions = place_next_queen(placed_x_coords, xy_diffs, xy_sums)
-        solution_set.extend(next_solutions)
+        solution_set.extend(
+            place_next_queen(placed_x_coords, xy_diffs, xy_sums))
 
         # backtrack
         placed_x_coords.pop()
