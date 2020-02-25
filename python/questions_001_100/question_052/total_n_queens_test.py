@@ -1,7 +1,7 @@
 import unittest, total_n_queens
 
 
-class TestIsValid(unittest.TestCase):
+class TestTotalNQueens(unittest.TestCase):
   def test_n_queens(self):
     self.assertEqual(total_n_queens.Solution().total_n_queens(3), 0)
     self.assertEqual(total_n_queens.Solution().total_n_queens(4), 2)

@@ -1,7 +1,7 @@
 import unittest, generate_parenthesis
 
 
-class TestIsValid(unittest.TestCase):
+class TestGenerateParenthesis(unittest.TestCase):
   def test_generate_parenthesis(self):
     self.assertEqual(generate_parenthesis.Solution().generate_parenthesis(2),
                      ['(())', '()()'])
