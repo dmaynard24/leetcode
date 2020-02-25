@@ -51,10 +51,9 @@ class Solution:
 
       for next_x in range(n):
         # break out after checking all solutions for the first half of the board
-        if y == 0:
-          # add 1 and floor it to account for boards with both even and odd extents
-          if next_x == (n + 1) // 2:
-            break
+        # add 1 to n and floor it to account for boards with both even and odd extents
+        if y == 0 and next_x == (n + 1) // 2:
+          break
 
         xy_diff = y - next_x
         xy_sum = y + next_x
