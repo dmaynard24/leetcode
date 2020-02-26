@@ -1,8 +1,8 @@
 import unittest, remove_element
 
 
-class TestTotalNQueens(unittest.TestCase):
-  def test_n_queens(self):
+class TestRemoveElement(unittest.TestCase):
+  def test_remove_element(self):
     self.assertEqual(remove_element.Solution().remove_element([3, 2, 2, 3], 3),
                      2)
     self.assertEqual(

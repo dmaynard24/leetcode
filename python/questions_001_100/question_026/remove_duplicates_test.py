@@ -1,8 +1,8 @@
 import unittest, remove_duplicates
 
 
-class TestTotalNQueens(unittest.TestCase):
-  def test_n_queens(self):
+class TestRemoveDuplicates(unittest.TestCase):
+  def test_remove_duplicates(self):
     self.assertEqual(remove_duplicates.Solution().remove_duplicates([1, 1, 2]),
                      2)
     self.assertEqual(
