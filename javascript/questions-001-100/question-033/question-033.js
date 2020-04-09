@@ -25,6 +25,10 @@
  * @return {number}
  */
 const search = function(nums, target) {
+  if (nums.length === 1) {
+    return nums[0] === target ? 0 : -1;
+  }
+
   function binarySearch(left, right) {
     const mid = Math.floor((left + right) / 2);
 
@@ -43,6 +47,7 @@ const search = function(nums, target) {
 
   // find pivot, flip to sort
   let pivot;
+  const firstPivotedVal = nums[0];
   for (let i = 1; i < nums.length; i++) {
     if (nums[i] < nums[i - 1]) {
       pivot = i;
@@ -50,18 +55,18 @@ const search = function(nums, target) {
     }
   }
 
+  // binary search on the sorted array
+  const searchIndex = binarySearch(0, nums.length - 1);
   if (pivot) {
-    const searchIndex = binarySearch(0, nums.length - 1);
     if (searchIndex === -1) {
       return searchIndex;
     }
+    if (target >= firstPivotedVal) {
+      return searchIndex - (nums.length - pivot);
+    }
     return searchIndex + pivot;
   }
-  return binarySearch(0, nums.length - 1);
+  return searchIndex;
 };
 
-// console.log(search([4, 5, 6, 7, 0, 1, 2], 3)); // -1
-// console.log(search([4, 5, 6, 7, 0, 1, 2], 0)); // 4
-// console.log(search([1], 1)); // 0
-// console.log(search([3, 1], 3)); // 0
-console.log(search([3, 5, 1], 3)); // 0
+module.exports = { search };
