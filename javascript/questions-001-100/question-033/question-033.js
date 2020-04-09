@@ -25,48 +25,44 @@
  * @return {number}
  */
 const search = function(nums, target) {
+  if (nums.length === 0) {
+    return -1;
+  }
+
   if (nums.length === 1) {
     return nums[0] === target ? 0 : -1;
   }
 
   function binarySearch(left, right) {
-    const mid = Math.floor((left + right) / 2);
+    if (nums[left] === target) {
+      return left;
+    }
+    if (nums[right] === target) {
+      return right;
+    }
+
+    const middle = Math.floor((left + right) / 2);
+    if (nums[middle] === target) {
+      return middle;
+    }
 
     if (right >= left) {
-      if (nums[mid] === target) {
-        return mid;
+      if (nums[left] <= nums[middle]) {
+        if (nums[left] <= target && target <= nums[middle]) {
+          return binarySearch(left, middle - 1);
+        }
+        return binarySearch(middle + 1, right);
       }
-      if (nums[mid] > target) {
-        return binarySearch(left, mid - 1);
+      if (nums[middle + 1] <= target && target <= nums[right]) {
+        return binarySearch(middle + 1, right);
       }
-      return binarySearch(mid + 1, right);
+      return binarySearch(left, middle - 1);
     }
 
     return -1;
   }
 
-  // find pivot, flip to sort
-  let pivot;
-  const firstPivotedVal = nums[0];
-  for (let i = 1; i < nums.length; i++) {
-    if (nums[i] < nums[i - 1]) {
-      pivot = i;
-      nums = [...nums.slice(i), ...nums.slice(0, i)];
-    }
-  }
-
-  // binary search on the sorted array
-  const searchIndex = binarySearch(0, nums.length - 1);
-  if (pivot) {
-    if (searchIndex === -1) {
-      return searchIndex;
-    }
-    if (target >= firstPivotedVal) {
-      return searchIndex - (nums.length - pivot);
-    }
-    return searchIndex + pivot;
-  }
-  return searchIndex;
+  return binarySearch(0, nums.length - 1);
 };
 
 module.exports = { search };
