@@ -1,12 +1,15 @@
 {
-	"editor.formatOnSave": true,
-	"[html]": {
-		"editor.formatOnSave": false
-	},
-	"editor.tabSize": 2,
-	"python.pythonPath": "C:\\Users\\davem\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
-	"python.linting.pylintEnabled": true,
-	"python.linting.enabled": true,
-	"python.formatting.provider": "yapf",
-	"python.formatting.yapfArgs": ["--style", "{indent_width: 2}"]
+  "editor.formatOnSave": true,
+  "[html]": {
+    "editor.formatOnSave": false
+  },
+  "editor.tabSize": 2,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "python.pythonPath": "C:\\Users\\davem\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": true,
+  "python.formatting.provider": "yapf",
+  "python.formatting.yapfArgs": ["--style", "{indent_width: 2}"]
 }
