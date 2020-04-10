@@ -25,8 +25,8 @@ const searchRange = function(nums, target) {
     return [-1, -1];
   }
 
-  if (nums.length === 1) {
-    return nums[0] === target ? [0, 0] : [-1, -1];
+  if (nums.length === 1 && nums[0] === target) {
+    return [0, 0];
   }
 
   function binarySearch(left, right) {
@@ -57,16 +57,16 @@ const searchRange = function(nums, target) {
     return [-1, -1];
   }
 
-  let l = foundIndex;
-  while (nums[l - 1] === target) {
-    l--;
+  let first = foundIndex;
+  while (nums[first - 1] === target) {
+    first--;
   }
-  let r = foundIndex;
-  while (nums[r + 1] === target) {
-    r++;
+  let last = foundIndex;
+  while (nums[last + 1] === target) {
+    last++;
   }
 
-  return [l, r];
+  return [first, last];
 };
 
-console.log(searchRange([5, 7, 7, 8, 8, 10], 8));
+module.exports = { searchRange };
