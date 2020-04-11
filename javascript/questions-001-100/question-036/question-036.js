@@ -55,6 +55,7 @@
 const isValidSudoku = function(board) {
   const placedRows = new Map();
   const placedCols = new Map();
+  const placedNineBlocks = new Map();
 
   for (let row = 0; row < board.length; row++) {
     for (let col = 0; col < board[row].length; col++) {
@@ -87,6 +88,19 @@ const isValidSudoku = function(board) {
       }
 
       // check surrounding larger 9-block
+      const largeRow = Math.floor(row / 3) + 1;
+      const largeCol = Math.floor(col / 3) + 1;
+      const largeBlockNum = (largeRow - 1) * 3 + largeCol;
+
+      if (placedNineBlocks.has(cellVal)) {
+        if (placedNineBlocks.get(cellVal).has(largeBlockNum)) {
+          return false;
+        }
+        placedNineBlocks.get(cellVal).set(largeBlockNum, 1);
+      } else {
+        placedNineBlocks.set(cellVal, new Map());
+        placedNineBlocks.get(cellVal).set(largeBlockNum, 1);
+      }
     }
   }
 
@@ -106,3 +120,17 @@ const boardOne = [
 ];
 
 console.log(isValidSudoku(boardOne));
+
+const boardTwo = [
+  [`8`, `3`, `.`, `.`, `7`, `.`, `.`, `.`, `.`],
+  [`6`, `.`, `.`, `1`, `9`, `5`, `.`, `.`, `.`],
+  [`.`, `9`, `8`, `.`, `.`, `.`, `.`, `6`, `.`],
+  [`8`, `.`, `.`, `.`, `6`, `.`, `.`, `.`, `3`],
+  [`4`, `.`, `.`, `8`, `.`, `3`, `.`, `.`, `1`],
+  [`7`, `.`, `.`, `.`, `2`, `.`, `.`, `.`, `6`],
+  [`.`, `6`, `.`, `.`, `.`, `.`, `2`, `8`, `.`],
+  [`.`, `.`, `.`, `4`, `1`, `9`, `.`, `.`, `5`],
+  [`.`, `.`, `.`, `.`, `8`, `.`, `.`, `7`, `9`],
+];
+
+console.log(isValidSudoku(boardTwo));
