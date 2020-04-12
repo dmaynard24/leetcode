@@ -57,8 +57,8 @@ const isValidSudoku = function(board) {
   const placedCols = new Map();
   const placedLargeBlocks = new Map();
 
-  for (let row = 0; row < board.length; row++) {
-    for (let col = 0; col < board[row].length; col++) {
+  for (let row = 0; row < 9; row++) {
+    for (let col = 0; col < 9; col++) {
       if (board[row][col] === `.`) {
         continue;
       }
