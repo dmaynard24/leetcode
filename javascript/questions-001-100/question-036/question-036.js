@@ -55,7 +55,7 @@
 const isValidSudoku = function(board) {
   const placedRows = new Map();
   const placedCols = new Map();
-  const placedNineBlocks = new Map();
+  const placedLargeBlocks = new Map();
 
   for (let row = 0; row < board.length; row++) {
     for (let col = 0; col < board[row].length; col++) {
@@ -92,14 +92,14 @@ const isValidSudoku = function(board) {
       const largeCol = Math.floor(col / 3) + 1;
       const largeBlockNum = (largeRow - 1) * 3 + largeCol;
 
-      if (placedNineBlocks.has(cellVal)) {
-        if (placedNineBlocks.get(cellVal).has(largeBlockNum)) {
+      if (placedLargeBlocks.has(cellVal)) {
+        if (placedLargeBlocks.get(cellVal).has(largeBlockNum)) {
           return false;
         }
-        placedNineBlocks.get(cellVal).set(largeBlockNum, 1);
+        placedLargeBlocks.get(cellVal).set(largeBlockNum, 1);
       } else {
-        placedNineBlocks.set(cellVal, new Map());
-        placedNineBlocks.get(cellVal).set(largeBlockNum, 1);
+        placedLargeBlocks.set(cellVal, new Map());
+        placedLargeBlocks.get(cellVal).set(largeBlockNum, 1);
       }
     }
   }
