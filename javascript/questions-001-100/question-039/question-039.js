@@ -43,6 +43,10 @@ const combinationSum = function(candidates, target) {
       return false;
     }
 
+    if (remaining < 0) {
+      return false;
+    }
+
     for (let j = i; j < candidates.length; j++) {
       const candidate = candidates[j];
       const maxCount = Math.floor(remaining / candidate);
