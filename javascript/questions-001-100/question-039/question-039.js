@@ -33,30 +33,27 @@
  * @return {number[][]}
  */
 const combinationSum = function(candidates, target) {
-  candidates.sort((a, b) => b - a);
-
   const solutionSet = [];
 
+  candidates.sort((a, b) => b - a);
+
   function getComboSum(i, remaining, solution) {
+    if (remaining === 0) {
+      solutionSet.push(solution);
+      return false;
+    }
+
     for (let j = i; j < candidates.length; j++) {
-      const candidateVal = candidates[j];
-      const maxCandidateCount = Math.floor(remaining / candidateVal);
-      for (let candidateCount = maxCandidateCount; candidateCount > 0; candidateCount--) {
-        if (remaining === target) {
-          solution = Array(candidateCount).fill(candidateVal);
-        } else {
-          solution = solution.concat(Array(candidateCount).fill(candidateVal));
-        }
-        remaining -= candidateVal * candidateCount;
-        if (remaining === 0) {
-          solutionSet.push(solution);
-        }
-
-        getComboSum(j + 1, remaining, solution);
-
-        remaining += candidateVal * candidateCount;
+      const candidate = candidates[j];
+      const maxCount = Math.floor(remaining / candidate);
+      for (let count = maxCount; count > 0; count--) {
+        remaining -= candidate * count;
+        getComboSum(j + 1, remaining, solution.concat(Array(count).fill(candidate)));
+        remaining += candidate * count;
       }
     }
+
+    return true;
   }
 
   getComboSum(0, target, []);
@@ -64,5 +61,5 @@ const combinationSum = function(candidates, target) {
   return solutionSet;
 };
 
-// console.log(combinationSum([2, 3, 6, 7], 7));
+console.log(combinationSum([2, 3, 6, 7], 7));
 console.log(combinationSum([2, 3, 5], 8));
