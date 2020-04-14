@@ -33,7 +33,7 @@
  * @param {number} target
  * @return {number[][]}
  */
-const combinationSum2 = function(candidates, target) {
+const combinationSumTwo = function(candidates, target) {
   const solutionSet = [];
 
   candidates.sort((a, b) => a - b);
@@ -63,12 +63,7 @@ const combinationSum2 = function(candidates, target) {
 
   getComboSum(0, target, []);
 
-  solutionSet.forEach((s) => {
-    console.log(s.join(`,`));
-  });
-
   return solutionSet;
 };
 
-console.log(combinationSum2([10, 1, 2, 7, 6, 1, 5], 8));
-console.log(combinationSum2([2, 5, 2, 1, 2], 5));
+module.exports = { combinationSumTwo };
