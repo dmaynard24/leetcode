@@ -63,6 +63,10 @@ const combinationSum2 = function(candidates, target) {
 
   getComboSum(0, target, []);
 
+  solutionSet.forEach((s) => {
+    console.log(s.join(`,`));
+  });
+
   return solutionSet;
 };
 
