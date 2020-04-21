@@ -1,3 +1,14 @@
+// Trapping Rain Water
+
+// Problem 42
+// Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.
+
+// The above elevation map is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped. Thanks Marcos for contributing this image!
+
+// Example:
+// Input: [0,1,0,2,1,0,1,3,2,1,2,1]
+// Output: 6
+
 /**
  * @param {number[]} height
  * @return {number}
@@ -28,10 +39,4 @@ const trap = function(height) {
   return amount;
 };
 
-console.log(trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1])); // 6
-console.log(trap([0, 1, 0, 2])); // 1
-console.log(trap([2, 0, 2])); // 2
-console.log(trap([4, 2, 3])); // 1
-console.log(trap([5, 4, 1, 2])); // 1
-console.log(trap([2, 1, 0, 2])); // 3
-console.log(trap([5, 2, 1, 2, 1, 5])); // 14
+module.exports = { trap };
