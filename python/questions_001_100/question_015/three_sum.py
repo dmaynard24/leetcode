@@ -31,7 +31,7 @@ class Solution:
 
     # start by caching term indices
     for i in range(len(nums)):
-      if cached_term_indices.get(nums[i]) is None:
+      if nums[i] not in cached_term_indices:
         cached_term_indices[nums[i]] = [i]
       else:
         cached_term_indices[nums[i]].append(i)
