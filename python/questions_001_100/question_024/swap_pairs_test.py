@@ -1,10 +1,6 @@
-import sys, os
-root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-sys.path.append(root_dir)
-
-from python.util import listnode
-
-import unittest, swap_pairs
+import unittest
+from ...util import listnode
+from . import swap_pairs
 
 head = listnode.ListNode(1)
 head.next = listnode.ListNode(2)

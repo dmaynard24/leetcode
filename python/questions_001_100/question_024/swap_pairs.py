@@ -8,11 +8,7 @@
 # Example:
 # Given 1->2->3->4, you should return the list as 2->1->4->3.
 
-import sys, os
-root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-sys.path.append(root_dir)
-
-from python.util import listnode
+from ...util import listnode
 
 
 class Solution:

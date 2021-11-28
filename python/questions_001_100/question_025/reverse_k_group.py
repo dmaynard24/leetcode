@@ -14,6 +14,7 @@
 # For k = 3, you should return: 3->2->1->4->5
 
 import sys, os
+
 root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
 sys.path.append(root_dir)
 

@@ -8,6 +8,7 @@
 # Output: 1->1->2->3->4->4
 
 import sys, os
+
 root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
 sys.path.append(root_dir)
 
