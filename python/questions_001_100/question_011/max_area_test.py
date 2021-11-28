@@ -1,4 +1,5 @@
-import unittest, max_area
+import unittest
+from . import max_area
 
 
 class TestMaxArea(unittest.TestCase):

@@ -17,12 +17,7 @@
 #         self.val = x
 #         self.next = None
 
-import sys, os
-
-root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-sys.path.append(root_dir)
-
-from python.util import listnode
+from ...util import listnode
 
 
 class Solution:

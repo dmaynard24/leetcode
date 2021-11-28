@@ -1,4 +1,5 @@
-import unittest, solve_n_queens
+import unittest
+from . import solve_n_queens
 
 
 class TestSolveNQueens(unittest.TestCase):

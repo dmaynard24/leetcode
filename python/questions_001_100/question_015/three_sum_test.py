@@ -1,4 +1,5 @@
-import unittest, three_sum
+import unittest
+from . import three_sum
 
 
 class TestThreeSum(unittest.TestCase):

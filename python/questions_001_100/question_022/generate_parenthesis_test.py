@@ -1,4 +1,5 @@
-import unittest, generate_parenthesis
+import unittest
+from . import generate_parenthesis
 
 
 class TestGenerateParenthesis(unittest.TestCase):

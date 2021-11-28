@@ -1,4 +1,5 @@
-import unittest, is_match
+import unittest
+from . import is_match
 
 
 class TestIsMatch(unittest.TestCase):

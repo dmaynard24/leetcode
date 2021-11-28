@@ -1,4 +1,5 @@
-import unittest, four_sum
+import unittest
+from . import four_sum
 
 
 class TestFourSum(unittest.TestCase):

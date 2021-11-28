@@ -1,4 +1,5 @@
-import unittest, longest_palindrome
+import unittest
+from . import longest_palindrome
 
 
 class TestLongestPalindrome(unittest.TestCase):

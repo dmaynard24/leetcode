@@ -1,4 +1,5 @@
-import unittest, total_n_queens
+import unittest
+from . import total_n_queens
 
 
 class TestTotalNQueens(unittest.TestCase):

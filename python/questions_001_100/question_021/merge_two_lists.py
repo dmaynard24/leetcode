@@ -7,12 +7,7 @@
 # Input: 1->2->4, 1->3->4
 # Output: 1->1->2->3->4->4
 
-import sys, os
-
-root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-sys.path.append(root_dir)
-
-from python.util import listnode
+from ...util import listnode
 
 
 class Solution:

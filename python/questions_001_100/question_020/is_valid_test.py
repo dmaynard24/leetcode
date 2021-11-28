@@ -1,4 +1,5 @@
-import unittest, is_valid
+import unittest
+from . import is_valid
 
 
 class TestIsValid(unittest.TestCase):

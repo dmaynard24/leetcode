@@ -1,4 +1,5 @@
-import unittest, int_to_roman
+import unittest
+from . import int_to_roman
 
 
 class TestIntToRoman(unittest.TestCase):

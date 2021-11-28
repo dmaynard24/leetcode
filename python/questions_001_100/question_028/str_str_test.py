@@ -1,4 +1,5 @@
-import unittest, str_str
+import unittest
+from . import str_str
 
 
 class TestStrStr(unittest.TestCase):

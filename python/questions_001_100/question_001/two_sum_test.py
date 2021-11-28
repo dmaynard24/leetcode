@@ -1,4 +1,5 @@
-import unittest, two_sum
+import unittest
+from . import two_sum
 
 
 class TestTwoSum(unittest.TestCase):

@@ -1,11 +1,6 @@
-import sys, os
-
-root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-sys.path.append(root_dir)
-
-from python.util import listnode
-
-import unittest, merge_two_lists
+import unittest
+from ...util import listnode
+from . import merge_two_lists
 
 l1 = listnode.ListNode(1)
 l1.next = listnode.ListNode(2)

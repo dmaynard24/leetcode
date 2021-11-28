@@ -1,4 +1,5 @@
-import unittest, median_sorted_arrays
+import unittest
+from . import median_sorted_arrays
 
 
 class TestMedianSortedArrays(unittest.TestCase):

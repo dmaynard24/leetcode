@@ -1,11 +1,6 @@
-import sys, os
-
-root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-sys.path.append(root_dir)
-
-from python.util import listnode
-
-import unittest, reverse_k_group
+import unittest
+from ...util import listnode
+from . import reverse_k_group
 
 head = listnode.ListNode(1)
 head.next = listnode.ListNode(2)

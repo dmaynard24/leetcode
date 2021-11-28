@@ -1,11 +1,6 @@
-import sys, os
-
-root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-sys.path.append(root_dir)
-
-from python.util import listnode
-
-import unittest, remove_nth_from_end
+import unittest
+from ...util import listnode
+from . import remove_nth_from_end
 
 l1 = listnode.ListNode(1)
 l1.next = listnode.ListNode(2)

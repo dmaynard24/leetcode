@@ -1,4 +1,5 @@
-import unittest, letter_combinations
+import unittest
+from . import letter_combinations
 
 
 class TestLetterCombinations(unittest.TestCase):

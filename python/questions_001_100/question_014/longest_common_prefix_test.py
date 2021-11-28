@@ -1,4 +1,5 @@
-import unittest, longest_common_prefix
+import unittest
+from . import longest_common_prefix
 
 
 class TestLongestCommonPrefix(unittest.TestCase):

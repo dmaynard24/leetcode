@@ -1,4 +1,5 @@
-import unittest, convert
+import unittest
+from . import convert
 
 
 class TestConvert(unittest.TestCase):

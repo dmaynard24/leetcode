@@ -1,4 +1,5 @@
-import unittest, my_atoi
+import unittest
+from . import my_atoi
 
 
 class TestMyAtoi(unittest.TestCase):

@@ -1,4 +1,5 @@
-import unittest, three_sum_closest
+import unittest
+from . import three_sum_closest
 
 
 class TestThreeSumClosest(unittest.TestCase):
@@ -7,7 +8,7 @@ class TestThreeSumClosest(unittest.TestCase):
         three_sum_closest.Solution().three_sum_closest([-1, 2, 1, -4], 1), 2)
     self.assertEqual(
         three_sum_closest.Solution().three_sum_closest(
-            [1, 2, 4, 8, 16, 32, 64, 128], 88), 82)
+            [1, 2, 4, 8, 16, 32, 64, 128], 88), 88)
 
 
 if __name__ == '__main__':

@@ -7,9 +7,11 @@
 # Given array nums = [-1, 2, 1, -4], and target = 1.
 # The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
 
+from typing import List
+
 
 class Solution:
-  def threeSumClosest(self, nums: [int], target: int) -> int:
+  def three_sum_closest(self, nums: List[int], target: int) -> int:
     nums.sort()
     closest_sum = nums[0] + nums[1] + nums[2]
     smallest_diff = abs(target - closest_sum)

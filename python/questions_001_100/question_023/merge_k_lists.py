@@ -12,13 +12,8 @@
 # ]
 # Output: 1->1->2->3->4->4->5->6
 
-import sys, os
-
-root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-sys.path.append(root_dir)
-
-from python.util import listnode
-from python.questions_001_100.question_021 import merge_two_lists
+from ...util import listnode
+from ..question_021 import merge_two_lists
 
 merge_two_lists = merge_two_lists.Solution().merge_two_lists
 

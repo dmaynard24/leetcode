@@ -1,4 +1,5 @@
-import unittest, reverse
+import unittest
+from . import reverse
 
 
 class TestReverse(unittest.TestCase):

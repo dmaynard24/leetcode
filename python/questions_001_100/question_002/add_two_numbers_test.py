@@ -1,11 +1,6 @@
-import sys, os
-
-root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-sys.path.append(root_dir)
-
-from python.util import listnode
-
-import unittest, add_two_numbers
+import unittest
+from ...util import listnode
+from . import add_two_numbers
 
 l1 = listnode.ListNode(2)
 l1.next = listnode.ListNode(4)

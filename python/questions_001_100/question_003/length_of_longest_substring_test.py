@@ -1,4 +1,5 @@
-import unittest, length_of_longest_substring
+import unittest
+from . import length_of_longest_substring
 
 
 class TestLengthOfLongestSubstring(unittest.TestCase):

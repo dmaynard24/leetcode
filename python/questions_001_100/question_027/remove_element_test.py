@@ -1,4 +1,5 @@
-import unittest, remove_element
+import unittest
+from . import remove_element
 
 
 class TestRemoveElement(unittest.TestCase):

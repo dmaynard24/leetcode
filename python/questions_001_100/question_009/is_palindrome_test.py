@@ -1,4 +1,5 @@
-import unittest, is_palindrome
+import unittest
+from . import is_palindrome
 
 
 class TestIsPalindrome(unittest.TestCase):
