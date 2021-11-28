@@ -17,9 +17,11 @@
 
 # Note that the order of those five elements can be arbitrary.
 
+from typing import List
+
 
 class Solution:
-  def remove_element(self, nums: [int], val: int) -> int:
+  def remove_element(self, nums: List[int], val: int) -> int:
     i = 0
     for j in range(len(nums)):
       if nums[j] != val:
