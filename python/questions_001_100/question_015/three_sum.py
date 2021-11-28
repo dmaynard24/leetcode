@@ -17,9 +17,11 @@
 #   [-1, -1, 2]
 # ]
 
+from typing import List
+
 
 class Solution:
-  def three_sum(self, nums: [int]) -> [[int]]:
+  def three_sum(self, nums: List[int]) -> List[List[int]]:
     if len(nums) < 3:
       return []
 

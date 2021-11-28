@@ -12,6 +12,7 @@
 # ]
 # Output: 1->1->2->3->4->4->5->6
 
+from typing import List
 from ...util import listnode
 from ..question_021 import merge_two_lists
 
@@ -19,7 +20,7 @@ merge_two_lists = merge_two_lists.Solution().merge_two_lists
 
 
 class Solution:
-  def merge_k_lists(self, lists: [listnode.ListNode]) -> listnode.ListNode:
+  def merge_k_lists(self, lists: List[listnode.ListNode]) -> listnode.ListNode:
     if len(lists) == 0:
       return None
 

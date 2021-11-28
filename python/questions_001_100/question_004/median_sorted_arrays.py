@@ -20,11 +20,13 @@
 # The median is (2 + 3)/2 = 2.5
 
 import sys
+from typing import List
 
 
 class Solution:
-  def find_median_sorted_arrays(self, nums1: [int], nums2: [int]) -> float:
-    def find_median_single_sorted_array(nums: [int]) -> float:
+  def find_median_sorted_arrays(self, nums1: List[int],
+                                nums2: List[int]) -> float:
+    def find_median_single_sorted_array(nums: List[int]) -> float:
       length = len(nums)
       mid_index = length // 2
       if length % 2 == 1:

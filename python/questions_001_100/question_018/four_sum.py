@@ -18,9 +18,11 @@
 #   [-2,  0, 0, 2]
 # ]
 
+from typing import List
+
 
 class Solution:
-  def four_sum(self, nums: [int], target: int) -> [[int]]:
+  def four_sum(self, nums: List[int], target: int) -> List[List[int]]:
     if len(nums) < 4:
       return []
 

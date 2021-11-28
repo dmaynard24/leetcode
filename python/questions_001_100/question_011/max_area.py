@@ -11,9 +11,11 @@
 # Input: [1,8,6,2,5,4,8,3,7]
 # Output: 49
 
+from typing import List
+
 
 class Solution:
-  def max_area(self, height: [int]) -> int:
+  def max_area(self, height: List[int]) -> int:
     l = 0
     r = len(height) - 1
     largest_area = 0

@@ -12,9 +12,11 @@
 # Because nums[0] + nums[1] = 2 + 7 = 9,
 # return [0, 1].
 
+from typing import List
+
 
 class Solution:
-  def two_sum(self, nums: [int], target: int) -> [int]:
+  def two_sum(self, nums: List[int], target: int) -> [int]:
     cached_nums = {}
 
     for i in range(len(nums)):
