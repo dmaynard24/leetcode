@@ -23,16 +23,13 @@
 
 class Solution:
   def length_of_last_word(self, s: str) -> int:
+    i = len(s) - 1
+    while s[i] == ' ':
+      i -= 1
+
     length = 0
-    isWord = False
-    for i in range(len(s)):
-      char = s[len(s) - 1 - i]
-      if char == ' ':
-        if isWord:
-          return length
-        else:
-          continue
-      else:
-        isWord = True
-        length += 1
+    while s[i] != ' ':
+      length += 1
+      i -= 1
+
     return length
