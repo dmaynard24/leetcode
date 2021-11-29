@@ -16,7 +16,7 @@ from typing import List
 
 
 class Solution:
-  def two_sum(self, nums: List[int], target: int) -> [int]:
+  def two_sum(self, nums: List[int], target: int) -> List[int]:
     cached_nums = {}
 
     for i in range(len(nums)):

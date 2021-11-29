@@ -24,9 +24,11 @@
 
 # Explanation: There exist two distinct solutions to the 4-queens puzzle as shown above.
 
+from typing import List
+
 
 class Solution:
-  def solve_n_queens(self, n: int) -> [[str]]:
+  def solve_n_queens(self, n: int) -> List[List[str]]:
     if n == 1:
       return [['Q']]
 

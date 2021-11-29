@@ -13,9 +13,11 @@
 #   "()()()"
 # ]
 
+from typing import List
+
 
 class Solution:
-  def generate_parenthesis(self, n: int) -> [str]:
+  def generate_parenthesis(self, n: int) -> List[str]:
     if n == 1:
       return ['()']
 

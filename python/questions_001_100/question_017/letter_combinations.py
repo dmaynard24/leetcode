@@ -12,9 +12,11 @@
 # Note:
 # Although the above answer is in lexicographical order, your answer could be in any order you want.
 
+from typing import List
+
 
 class Solution:
-  def letter_combinations(self, digits: str) -> [str]:
+  def letter_combinations(self, digits: str) -> List[str]:
     if len(digits) == 0:
       return []
 
