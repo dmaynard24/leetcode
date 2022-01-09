@@ -31,3 +31,5 @@ const invertTree = function(root) {
   }
   return root;
 };
+
+module.exports = invertTree;
