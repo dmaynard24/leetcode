@@ -5,6 +5,7 @@ test(`expects the function to return the initial count when first called, then t
   expect(counter()).toBe(10);
   expect(counter()).toBe(11);
   expect(counter()).toBe(12);
+  
   const newCounter = createCounter(-2);
   expect(newCounter()).toBe(-2);
   expect(newCounter()).toBe(-1);
