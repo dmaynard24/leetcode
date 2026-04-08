@@ -19,12 +19,12 @@ test(`prevents a function from executing if called before the delay time is up`,
 
   setTimeout(cancel, cancelTimeMs);
 
-  const ms = 20;
+  const ms = t;
   const buffer = 3; // ms buffer
   setTimeout(() => {
     const [{ time, returned }] = result;
     expect(time).toBeGreaterThan(ms - buffer);
     expect(time).toBeLessThan(ms + buffer);
     expect(returned).toBe(10);
-  }, maxT + 15)
+  }, maxT + 15);
 });
