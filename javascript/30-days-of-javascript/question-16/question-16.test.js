@@ -1,4 +1,4 @@
-const timeLimit = require(`./question-16`);
+const timeLimit = require(`./question-17`);
 
 test(`sets the time limit on a function correctly`, () => {
   const limited = timeLimit((t) => new Promise(res => setTimeout(res, t)), 100);
